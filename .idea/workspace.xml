@@ -4,7 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e23e9cd-ab7a-4297-a77f-ed7a1e1c12fd" name="Default Changelist" comment="api 경로 수정, origin 수정" />
+    <list default="true" id="3e23e9cd-ab7a-4297-a77f-ed7a1e1c12fd" name="Default Changelist" comment="cors 수정 2">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/controller/CryptoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/controller/CryptoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/controller/PolygonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/controller/PolygonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/controller/PortFolioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/controller/PortFolioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/repository/CryptoCurrencyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/repository/CryptoCurrencyRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/security/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/security/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/service/CryptoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/service/CryptoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/service/LoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/service/PolygonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/service/PolygonService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/service/PortFolioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/service/PortFolioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/vo/PortFolio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/vo/PortFolio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/vo/PortFolioDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/vo/PortFolioDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/vo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/vo/User.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -79,6 +94,7 @@
       <updated>1637388279837</updated>
       <workItem from="1637388282209" duration="4996000" />
       <workItem from="1638197947550" duration="346000" />
+      <workItem from="1638198362396" duration="1785000" />
     </task>
     <task id="LOCAL-00001" summary="api 경로 수정, origin 수정">
       <created>1637548948209</created>
@@ -87,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637548948209</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="cors 수정">
+      <created>1638376195201</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1638376195202</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -107,6 +130,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="api 경로 수정, origin 수정" />
-    <option name="LAST_COMMIT_MESSAGE" value="api 경로 수정, origin 수정" />
+    <MESSAGE value="cors 수정" />
+    <MESSAGE value="cors 수정 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="cors 수정 2" />
   </component>
 </project>

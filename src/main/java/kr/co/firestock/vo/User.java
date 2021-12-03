@@ -22,11 +22,11 @@ public class User implements UserDetails {
 
     String password;
 
-    String roles;
+    String roles; //ADMIN, MEMBER 나누는 용도
 
-    String name;
+    String name; //실제 이름
 
-    String nickname;
+    String nickname; //별명
 
     String email;
 

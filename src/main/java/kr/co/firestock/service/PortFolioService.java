@@ -18,7 +18,7 @@ public class PortFolioService {
     @Autowired
     PortFolioMongoRespository portFolioMongoRespository;
 
-    public ResponseInfo createPolio(String userId) {
+    public ResponseInfo createFolio(String userId) {
         Boolean isExist = portFolioMongoRespository.existsBy_id(userId);
         if (!isExist) {
             portFolioMongoRespository.save(new PortFolio(userId, new HashMap<>()));
@@ -28,18 +28,23 @@ public class PortFolioService {
         }
     }
 
-    public ResponseInfo createPolioName(String userId, String portPolioType, String portPolioName) {
+    public ResponseInfo createFolioName(String userId, String portFolioType, String portFolioName, String portFolioMoney) {
         PortFolio portFolio = portFolioMongoRespository.findBy_id(userId);
         HashMap<String, PortFolioDetail> map = portFolio.getPortPolioDetailMap();
-        map.put(portPolioName,new PortFolioDetail(portPolioType, new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>()));
+        map.put(portFolioName,new PortFolioDetail(portFolioType, portFolioMoney, new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>()));
         portFolio.setPortPolioDetailMap(map);
         portFolioMongoRespository.save(portFolio);
         return new ResponseInfo(0,"Success");
     }
 
-    public ResponseInfo findStock(String type, String userId, String portPolioName) {
+    public ResponseInfo findPortFolio(String userId) {
         PortFolio polio = portFolioMongoRespository.findBy_id(userId);
-        PortFolioDetail portFolioDetail = polio.getPortPolioDetailMap().get(portPolioName);
+        return new ResponseInfo(0, "Success", polio);
+    }
+
+    public ResponseInfo findPortFolioDetail(String type, String userId, String portFolioName) {
+        PortFolio polio = portFolioMongoRespository.findBy_id(userId);
+        PortFolioDetail portFolioDetail = polio.getPortPolioDetailMap().get(portFolioName);
         if (type.equals("all")) {
             return new ResponseInfo(0, "Success", portFolioDetail);
         } else if (type.equals("domestic")) {
@@ -61,10 +66,13 @@ public class PortFolioService {
         }
     }
 
-    public ResponseInfo workDomesticStock(ReqBodyFormat reqBodyFormat, String method, String userId, String portPolioName) {
+    /**
+     * 국내 주식 추가
+     *  */
+    public ResponseInfo workDomesticStock(ReqBodyFormat reqBodyFormat, String method, String userId, String portFolioName) {
         PortFolio polio = portFolioMongoRespository.findBy_id(userId);
         HashMap<String, PortFolioDetail> map = polio.getPortPolioDetailMap();
-        PortFolioDetail portFolioDetail = map.get(portPolioName);
+        PortFolioDetail portFolioDetail = map.get(portFolioName);
 
         List<DomesticStock> domesticStockList = new ArrayList<>();
         if(!portFolioDetail.getDomesticStocks().isEmpty()){
@@ -93,7 +101,7 @@ public class PortFolioService {
             /** update */
             /** 이미 존재한다면 기존에 있던것을 삭제하고 새로운 데이터를 집어넣음*/
             int idx = domesticStockList.indexOf(domesticStock);
-            if (idx == -1) {
+            if (idx != 1) {
                 domesticStockList.add(domesticStock);
             } else {
                 domesticStockList.remove(idx);
@@ -103,15 +111,18 @@ public class PortFolioService {
             return new ResponseInfo(-1, "Wrong method");
         }
         portFolioDetail.setDomesticStocks(domesticStockList);
-        map.put(portPolioName, portFolioDetail);
+        map.put(portFolioName, portFolioDetail);
         portFolioMongoRespository.save(new PortFolio(userId,map));
         return new ResponseInfo(0, method + " 성공", domesticStockList);
     }
 
-    public ResponseInfo workOverseasStock(ReqBodyFormat reqBodyFormat, String method, String userId, String portPolioName) {
+    /**
+     * 해외 주식 추가
+     *  */
+    public ResponseInfo workOverseasStock(ReqBodyFormat reqBodyFormat, String method, String userId, String portFolioName) {
         PortFolio polio = portFolioMongoRespository.findBy_id(userId);
         HashMap<String, PortFolioDetail> map = polio.getPortPolioDetailMap();
-        PortFolioDetail portFolioDetail = map.get(portPolioName);
+        PortFolioDetail portFolioDetail = map.get(portFolioName);
 
         List<OverseasStock> overseasStockList = new ArrayList<>();
         if(!portFolioDetail.getOverseasStocks().isEmpty()){
@@ -138,7 +149,7 @@ public class PortFolioService {
         } else if (method.equals("update")) {
             /** update */
             int idx = overseasStockList.indexOf(overseasStock);
-            if (idx == -1) {
+            if (idx != 1) {
                 overseasStockList.add(overseasStock);
             } else {
                 overseasStockList.remove(idx);
@@ -149,15 +160,18 @@ public class PortFolioService {
         }
 
         portFolioDetail.setOverseasStocks(overseasStockList);
-        map.put(portPolioName, portFolioDetail);
+        map.put(portFolioName, portFolioDetail);
         portFolioMongoRespository.save(new PortFolio(userId,map));
         return new ResponseInfo(0, method + " 성공", overseasStockList);
     }
 
-    public ResponseInfo workISA(ReqBodyFormat reqBodyFormat, String method, String userId,String portPolioName) {
+    /**
+     * ISA 추가
+     *  */
+    public ResponseInfo workISA(ReqBodyFormat reqBodyFormat, String method, String userId,String portFolioName) {
         PortFolio polio = portFolioMongoRespository.findBy_id(userId);
         HashMap<String, PortFolioDetail> map = polio.getPortPolioDetailMap();
-        PortFolioDetail portFolioDetail = map.get(portPolioName);
+        PortFolioDetail portFolioDetail = map.get(portFolioName);
 
         List<ISA> isaList  = new ArrayList<>();
         if(!portFolioDetail.getIsas().isEmpty()){
@@ -185,7 +199,7 @@ public class PortFolioService {
         } else if (method.equals("update")) {
             /** update */
             int idx = isaList.indexOf(isa);
-            if (idx == -1) {
+            if (idx != 1) {
                 isaList.add(isa);
             } else {
                 isaList.remove(idx);
@@ -196,15 +210,18 @@ public class PortFolioService {
         }
 
         portFolioDetail.setIsas(isaList);
-        map.put(portPolioName, portFolioDetail);
+        map.put(portFolioName, portFolioDetail);
         portFolioMongoRespository.save(new PortFolio(userId,map));
         return new ResponseInfo(0, method + " 성공", isaList);
     }
 
-    public ResponseInfo workPersonal(ReqBodyFormat reqBodyFormat, String method, String userId,String portPolioName) {
+    /**
+     * 개인 연금 추가
+     *  */
+    public ResponseInfo workPersonal(ReqBodyFormat reqBodyFormat, String method, String userId,String portFolioName) {
         PortFolio polio = portFolioMongoRespository.findBy_id(userId);
         HashMap<String, PortFolioDetail> map = polio.getPortPolioDetailMap();
-        PortFolioDetail portFolioDetail = map.get(portPolioName);
+        PortFolioDetail portFolioDetail = map.get(portFolioName);
 
         List<PersonalPension> personalPensionList  = new ArrayList<>();
         if(!portFolioDetail.getPersonalPensions().isEmpty()){
@@ -235,7 +252,7 @@ public class PortFolioService {
         } else if (method.equals("update")) {
             /** update */
             int idx = personalPensionList.indexOf(personalPension);
-            if (idx == -1) {
+            if (idx != 1) {
                 personalPensionList.add(personalPension);
             } else {
                 personalPensionList.remove(idx);
@@ -245,15 +262,18 @@ public class PortFolioService {
             return new ResponseInfo(-1, "Wrong method");
         }
         portFolioDetail.setPersonalPensions(personalPensionList);
-        map.put(portPolioName, portFolioDetail);
+        map.put(portFolioName, portFolioDetail);
         portFolioMongoRespository.save(new PortFolio(userId,map));
         return new ResponseInfo(0, method + " 성공", personalPensionList);
     }
 
-    public ResponseInfo workRetirement(ReqBodyFormat reqBodyFormat, String method, String userId,String portPolioName) {
+    /**
+     * 퇴직 연금 추가
+     *  */
+    public ResponseInfo workRetirement(ReqBodyFormat reqBodyFormat, String method, String userId,String portFolioName) {
         PortFolio polio = portFolioMongoRespository.findBy_id(userId);
         HashMap<String, PortFolioDetail> map = polio.getPortPolioDetailMap();
-        PortFolioDetail portFolioDetail = map.get(portPolioName);
+        PortFolioDetail portFolioDetail = map.get(portFolioName);
 
         List<RetirementPension> retirementPensionList = new ArrayList<>();
         if(!portFolioDetail.getRetirementPensions().isEmpty()){
@@ -282,7 +302,7 @@ public class PortFolioService {
         } else if (method.equals("update")) {
             /** update */
             int idx = retirementPensionList.indexOf(retirementPension);
-            if (idx == -1) {
+            if (idx != 1) {
                 retirementPensionList.add(retirementPension);
             } else {
                 retirementPensionList.remove(idx);
@@ -292,15 +312,33 @@ public class PortFolioService {
             return new ResponseInfo(-1, "Wrong method");
         }
         portFolioDetail.setRetirementPensions(retirementPensionList);
-        map.put(portPolioName, portFolioDetail);
+        map.put(portFolioName, portFolioDetail);
         portFolioMongoRespository.save(new PortFolio(userId,map));
         return new ResponseInfo(0, method + " 성공", retirementPensionList);
     }
 
-    public ResponseInfo workCoin(ReqBodyFormat reqBodyFormat, String method, String userId, String portPolioName) {
+    /**
+     * 암호 화폐 추가
+     *
+     * ex)
+     *
+     {
+         "stockName" : "NEO",
+         "exchange" : "upbit",
+         "averagePrice" : "75000",
+         "currentPrice" : "52870",
+         "quantity" : "20",
+         "yield" : "-29.51%",
+         "valuationLoss" : "-442600",
+         "purchaseAmount" : "1500000",
+         "balanceAssessment" : "1057400"
+     }
+     *
+     *  */
+    public ResponseInfo workCoin(ReqBodyFormat reqBodyFormat, String method, String userId, String portFolioName) {
         PortFolio polio = portFolioMongoRespository.findBy_id(userId);
         HashMap<String, PortFolioDetail> map = polio.getPortPolioDetailMap();
-        PortFolioDetail portFolioDetail = map.get(portPolioName);
+        PortFolioDetail portFolioDetail = map.get(portFolioName);
 
         List<CryptoCurrency> cryptoCurrencyList  = new ArrayList<>();
         if(!portFolioDetail.getCryptoCurrencys().isEmpty()){
@@ -327,9 +365,10 @@ public class PortFolioService {
         } else if (method.equals("update")) {
             /** update */
             int idx = cryptoCurrencyList.indexOf(cryptoCurrency);
-            if (idx == -1) {
+            if (idx != 1) {
                 cryptoCurrencyList.add(cryptoCurrency);
             } else {
+                /**같은 경우에는 idx==1 */
                 cryptoCurrencyList.remove(idx);
                 cryptoCurrencyList.add(cryptoCurrency);
             }
@@ -337,15 +376,18 @@ public class PortFolioService {
             return new ResponseInfo(-1, "Wrong method");
         }
         portFolioDetail.setCryptoCurrencys(cryptoCurrencyList);
-        map.put(portPolioName, portFolioDetail);
+        map.put(portFolioName, portFolioDetail);
         portFolioMongoRespository.save(new PortFolio(userId,map));
         return new ResponseInfo(0, method + " 성공", cryptoCurrencyList);
     }
 
-    public ResponseInfo workNonCurrent(ReqBodyFormat reqBodyFormat, String method, String userId, String portPolioName) {
+    /**
+     * 비유동자산 추가
+     *  */
+    public ResponseInfo workNonCurrent(ReqBodyFormat reqBodyFormat, String method, String userId, String portFolioName) {
         PortFolio polio = portFolioMongoRespository.findBy_id(userId);
         HashMap<String, PortFolioDetail> map = polio.getPortPolioDetailMap();
-        PortFolioDetail portFolioDetail = map.get(portPolioName);
+        PortFolioDetail portFolioDetail = map.get(portFolioName);
 
         List<NonCurrentAssets> nonCurrentAssetsList = new ArrayList<>();
         if(!portFolioDetail.getNonCurrentAssets().isEmpty()){
@@ -368,7 +410,7 @@ public class PortFolioService {
         } else if (method.equals("update")) {
             /** update */
             int idx = nonCurrentAssetsList.indexOf(nonCurrentAssets);
-            if (idx == -1) {
+            if (idx != 1) {
                 nonCurrentAssetsList.add(nonCurrentAssets);
             } else {
                 nonCurrentAssetsList.remove(idx);
@@ -378,8 +420,10 @@ public class PortFolioService {
             return new ResponseInfo(-1, "Wrong method");
         }
         portFolioDetail.setNonCurrentAssets(nonCurrentAssetsList);
-        map.put(portPolioName, portFolioDetail);
+        map.put(portFolioName, portFolioDetail);
         portFolioMongoRespository.save(new PortFolio(userId,map));
         return new ResponseInfo(0, method + " 성공", nonCurrentAssetsList);
     }
+
+
 }

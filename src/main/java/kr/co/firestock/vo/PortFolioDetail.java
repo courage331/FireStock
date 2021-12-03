@@ -10,7 +10,9 @@ import java.util.List;
 @NoArgsConstructor
 public class PortFolioDetail {
 
-    String portPolioType;
+    String portFolioType;
+
+    String portFolioMoney;
 
     List<DomesticStock> domesticStocks;
 
@@ -27,8 +29,9 @@ public class PortFolioDetail {
     List<NonCurrentAssets> nonCurrentAssets;
 
     @Builder
-    public PortFolioDetail(String portPolioType, List<DomesticStock> domesticStocks, List<OverseasStock> overseasStocks, List<ISA> isas, List<PersonalPension> personalPensions, List<RetirementPension> retirementPensions, List<CryptoCurrency> cryptoCurrencys, List<NonCurrentAssets> nonCurrentAssets) {
-        this.portPolioType = portPolioType;
+    public PortFolioDetail(String portFolioType, String portFolioMoney, List<DomesticStock> domesticStocks, List<OverseasStock> overseasStocks, List<ISA> isas, List<PersonalPension> personalPensions, List<RetirementPension> retirementPensions, List<CryptoCurrency> cryptoCurrencys, List<NonCurrentAssets> nonCurrentAssets) {
+        this.portFolioType = portFolioType;
+        this.portFolioMoney = portFolioMoney;
         this.domesticStocks = domesticStocks;
         this.overseasStocks = overseasStocks;
         this.isas = isas;

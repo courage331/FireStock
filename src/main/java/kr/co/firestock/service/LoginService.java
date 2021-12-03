@@ -46,7 +46,6 @@ public class LoginService {
 
     }
 
-
     public ResponseInfo createToken(LoginRequest loginRequest) {
         try {
             //유효성검사 진행
@@ -76,11 +75,17 @@ public class LoginService {
     }
 
     public ResponseInfo findUserInfo(String token){
-        User user = jwtTokenProvider.getUserInfoInAuthentication(token);
+
         ResponseInfo responseInfo = new ResponseInfo();
-        responseInfo.setReturnCode(0);
-        responseInfo.setReturnMsg("Success");
-        responseInfo.setData(user);
+        try {
+            User user = jwtTokenProvider.getUserInfoInAuthentication(token);
+            responseInfo.setReturnCode(0);
+            responseInfo.setReturnMsg("Success");
+            responseInfo.setData(user);
+        }catch(Exception e){
+            responseInfo.setReturnCode(-1);
+            responseInfo.setReturnMsg("Fail");
+        }
         return responseInfo;
     }
 }

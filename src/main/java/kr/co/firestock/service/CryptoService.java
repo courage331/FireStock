@@ -33,17 +33,18 @@ public class CryptoService {
 
 
     @Value("${upbit.address.market}")
-    String marketurl;
+    String upbitUrl;
 
     @Value("${upbit.address.minuteCandle}")
-    String candleurl;
+    String candleUrl;
 
-
+    @Value("${binance.address.market}")
+    String binanceUrl;
 
     @Resource(name="cryptoCurrencyRepository")
     CryptoCurrencyRepository cryptoCurrencyRepository;
 
-    public ResponseInfo inputMarketData() {
+    public ResponseInfo inputUpBitCoinData() {
         ResponseInfo responseInfo = new ResponseInfo();
         RestTemplate restTemplate = new RestTemplate();
         List<CryptoCurrencyVO> currencyVOList = new ArrayList<>();
@@ -56,7 +57,7 @@ public class CryptoService {
 
             HttpEntity<String> entity = new HttpEntity(headers);
 
-            ResponseEntity<String> response = restTemplate.exchange(marketurl, HttpMethod.GET, entity, String.class);
+            ResponseEntity<String> response = restTemplate.exchange(upbitUrl, HttpMethod.GET, entity, String.class);
             JsonArray jsonObj = gson.fromJson(response.getBody(), JsonArray.class);
             int len = jsonObj.size();
 
@@ -82,15 +83,15 @@ public class CryptoService {
                 currencyVOList.add(cryptoCurrencyVO);
                 sleep(90); /** Too Many Request 피하기 위해서 사용*/
             }
-            responseInfo.setReturnCode(200);
+            responseInfo.setReturnCode(0);
             responseInfo.setReturnMsg("Success");
             responseInfo.setData(currencyVOList);
 
             cryptoCurrencyRepository.saveAll(currencyVOList);
         } catch (Exception e) {
+            log.error("[CryptoService inputUpBitCoinData Error]");
             responseInfo.setReturnCode(-1);
             responseInfo.setReturnMsg("Fail");
-            e.printStackTrace();
         }
         responseInfo.setReturnCode(0);
         responseInfo.setReturnMsg(new StringUtil().makeTodayDate()+ " : Success");
@@ -113,7 +114,7 @@ public class CryptoService {
             final HttpEntity<String> entity = new HttpEntity(headers);
 
 //            candleurl += "/" + unit + "?market=" + market + "&to=" + to + "&count=" + count;
-            String url = candleurl + "/" + unit + "?market=" + market + "&count=" + count;
+            String url = candleUrl + "/" + unit + "?market=" + market + "&count=" + count;
             ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
             jsonObj = gson.fromJson(response.getBody(), JsonArray.class);
         } catch (Exception e) {
@@ -121,5 +122,89 @@ public class CryptoService {
         }
 
         return jsonObj;
+    }
+
+    /**1798 */
+    public ResponseInfo inputBinanceCoinData() {
+        ResponseInfo responseInfo = new ResponseInfo();
+        RestTemplate restTemplate = new RestTemplate();
+        List<CryptoCurrencyVO> currencyVOList = new ArrayList<>();
+        try{
+            restTemplate.getMessageConverters().add(0, new StringHttpMessageConverter(Charset.forName("UTF-8")));
+
+            HttpHeaders headers = new HttpHeaders();
+
+            headers.add("Accept", "application/json");
+
+            HttpEntity<String> entity = new HttpEntity(headers);
+
+            ResponseEntity<String> response = restTemplate.exchange(binanceUrl, HttpMethod.GET, entity, String.class);
+            JsonArray jsonObj = gson.fromJson(response.getBody(), JsonArray.class);
+            int len = jsonObj.size();
+            for(int i=0; i<len; i++){
+                CryptoCurrencyVO  cryptoCurrencyVO = new CryptoCurrencyVO();
+                cryptoCurrencyVO.setMarket(jsonObj.get(i).getAsJsonObject().get("symbol").getAsString());
+                cryptoCurrencyVO.setTrade_price(jsonObj.get(i).getAsJsonObject().get("price").getAsString());
+                cryptoCurrencyVO.setUpdt(new StringUtil().makeTodayDate());
+                currencyVOList.add(cryptoCurrencyVO);
+            }
+
+        }catch(Exception e){
+            log.error("[CryptoService inputBinanceCoinData Error]");
+            responseInfo.setReturnCode(-1);
+            responseInfo.setReturnMsg("Fail");
+        }
+        responseInfo.setData(currencyVOList);
+        return responseInfo;
+    }
+
+    public ResponseInfo findCryptoCurrencyInfo(String cryptoname) {
+        ResponseInfo responseInfo = new ResponseInfo();
+        CryptoCurrencyVO cryptoCurrencyVO = new CryptoCurrencyVO();
+        try{
+            cryptoCurrencyVO = cryptoCurrencyRepository.findByMarket(cryptoname);
+            responseInfo.setReturnCode(0);
+            responseInfo.setReturnMsg("Success");
+            responseInfo.setData(cryptoCurrencyVO);
+        }catch (Exception e){
+            log.error("[CryptoService findByMarket Error]");
+            responseInfo.setReturnCode(-1);
+            responseInfo.setReturnMsg("Fail");
+        }
+
+        return responseInfo;
+    }
+
+    public ResponseInfo findCryptoCurrencyInfos(String cryptonames) {
+        ResponseInfo responseInfo = new ResponseInfo();
+        String [] names = cryptonames.split(",");
+        List<CryptoCurrencyVO> currencyVOList = new ArrayList<>();
+        try{
+            currencyVOList = cryptoCurrencyRepository.findMarketIn(names);
+            responseInfo.setReturnCode(0);
+            responseInfo.setReturnMsg("Success");
+            responseInfo.setData(currencyVOList);
+        }catch (Exception e){
+            log.error("[CryptoService findMarketIn Error]");
+            responseInfo.setReturnCode(-1);
+            responseInfo.setReturnMsg("Fail");
+        }
+        return responseInfo;
+    }
+
+    public ResponseInfo findAllCryptoCurrencyInfo() {
+        ResponseInfo responseInfo = new ResponseInfo();
+        List<CryptoCurrencyVO> currencyVOList = new ArrayList<>();
+        try{
+            currencyVOList = cryptoCurrencyRepository.findAll();
+            responseInfo.setReturnCode(0);
+            responseInfo.setReturnMsg("Success");
+            responseInfo.setData(currencyVOList);
+        }catch (Exception e){
+            log.error("[CryptoService findAll Error]");
+            responseInfo.setReturnCode(-1);
+            responseInfo.setReturnMsg("Fail");
+        }
+        return responseInfo;
     }
 }
