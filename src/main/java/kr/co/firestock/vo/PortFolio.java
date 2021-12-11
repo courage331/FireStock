@@ -18,11 +18,11 @@ public class PortFolio {
     @Id
     String _id;
 
-    HashMap<String, PortFolioDetail> portPolioDetailMap;
+    HashMap<String, PortFolioDetail> portFolioDetailMap;
 
     @Builder
-    public PortFolio(String _id, HashMap<String, PortFolioDetail> portPolioDetailMap) {
+    public PortFolio(String _id, HashMap<String, PortFolioDetail> portFolioDetailMap) {
         this._id = _id;
-        this.portPolioDetailMap = portPolioDetailMap;
+        this.portFolioDetailMap = portFolioDetailMap;
     }
 }

@@ -42,7 +42,7 @@ public class CryptoController {
      * 현재 호출용으로는 사용하지 않음
      * 나중을 위해 남겨둠 CryptoService의 showMinuteCandle에서 직접 호출진행중
      *
-    * //시세 캔들
+     * //시세 캔들
      * //PathVariable : 분 단위. 가능한 값 : 1, 3, 5, 15, 10, 30, 60, 240
      * RequestParam
      *

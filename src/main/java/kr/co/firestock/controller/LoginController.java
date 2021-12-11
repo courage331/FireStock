@@ -40,14 +40,17 @@ public class LoginController {
      * */
     @PostMapping("/join")
     public ResponseInfo createUser(@RequestBody User user){
-        log.info("[회원가입 시작]");
-        ResponseInfo responseInfo = new ResponseInfo();
-        String id = loginService.createUser(user);
-        portFolioService.createFolio(id);
-        responseInfo.setReturnCode(0);
-        responseInfo.setReturnMsg("Success");
-        responseInfo.setData(id);
-        log.info("[회원가입 성공]");
+        log.info("[Start createUser]");
+        ResponseInfo responseInfo = loginService.createUser(user);
+        if(responseInfo.getReturnCode()!=0){
+            return responseInfo;
+        }
+        responseInfo = portFolioService.createFolio(user.get_id());
+        if(responseInfo.getReturnCode()!=0){
+            return responseInfo;
+        }
+        responseInfo.setReturnMsg("[회원가입 성공!]");
+        log.info("[End createUser]");
         return responseInfo;
     }
 
@@ -67,8 +70,9 @@ public class LoginController {
      */
     @PostMapping("/login")
     public ResponseInfo login(@RequestBody LoginRequest loginRequest){
+        log.info("[Start login]");
         ResponseInfo responseInfo = loginService.createToken(loginRequest);
-        log.info("[로그 성공]");
+        log.info("[End login]");
         return responseInfo;
     }
 
@@ -88,7 +92,30 @@ public class LoginController {
      */
     @PostMapping("/info")
     public ResponseInfo getUserFromToken(@RequestBody Map<String,String> param){
+        log.info("[Start getUserFromToken]");
         ResponseInfo responseInfo = loginService.findUserInfo(param.get("token"));
+        log.info("[End getUserFromToken]");
+        return responseInfo;
+    }
+
+    /** 아이디 중복확인 */
+    @GetMapping("/check/id/{_id}")
+    public ResponseInfo checkId(@PathVariable(value="_id") String _id){
+        log.info("[Start checkId]");
+        ResponseInfo responseInfo = loginService.findUserId(_id);
+        log.info("[End checkId]");
+        return responseInfo;
+    }
+
+    /**비밀번호 변경 */
+    @GetMapping("/find/password/{_id}")
+    public ResponseInfo findPassword(
+            @PathVariable(value="_id") String _id,
+            @RequestParam(name = "password", required = true, defaultValue = "") String password
+    ){
+        log.info("[Start findPassword]");
+        ResponseInfo responseInfo = loginService.findPassword(_id,password);
+        log.info("[End findPassword]");
         return responseInfo;
     }
 }

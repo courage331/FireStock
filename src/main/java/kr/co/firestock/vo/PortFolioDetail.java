@@ -14,6 +14,10 @@ public class PortFolioDetail {
 
     String portFolioMoney;
 
+    String regDt;
+
+    String upDt;
+
     List<DomesticStock> domesticStocks;
 
     List<OverseasStock> overseasStocks;
@@ -29,9 +33,11 @@ public class PortFolioDetail {
     List<NonCurrentAssets> nonCurrentAssets;
 
     @Builder
-    public PortFolioDetail(String portFolioType, String portFolioMoney, List<DomesticStock> domesticStocks, List<OverseasStock> overseasStocks, List<ISA> isas, List<PersonalPension> personalPensions, List<RetirementPension> retirementPensions, List<CryptoCurrency> cryptoCurrencys, List<NonCurrentAssets> nonCurrentAssets) {
+    public PortFolioDetail(String portFolioType, String portFolioMoney, String regDt, String upDt, List<DomesticStock> domesticStocks, List<OverseasStock> overseasStocks, List<ISA> isas, List<PersonalPension> personalPensions, List<RetirementPension> retirementPensions, List<CryptoCurrency> cryptoCurrencys, List<NonCurrentAssets> nonCurrentAssets) {
         this.portFolioType = portFolioType;
         this.portFolioMoney = portFolioMoney;
+        this.regDt = regDt;
+        this.upDt = upDt;
         this.domesticStocks = domesticStocks;
         this.overseasStocks = overseasStocks;
         this.isas = isas;

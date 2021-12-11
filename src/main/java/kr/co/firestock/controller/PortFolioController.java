@@ -29,7 +29,9 @@ public class PortFolioController {
     public ResponseInfo createFolio(
             @RequestParam(name = "userId", required = true, defaultValue = "") String userId
     ) {
+        log.info("[Start createFolio]");
         ResponseInfo responseInfo = portFolioService.createFolio(userId);
+        log.info("[End createFolio]");
         return responseInfo;
     }
 
@@ -42,20 +44,19 @@ public class PortFolioController {
      * userId : 사용자 id
      * portFolioName : 포트폴리오의 제목(이름)
      * portFolioType : 포트폴리오의 종류(일반형인지, ISP 같은식으로 나뉘는 종류)
-     * portFolioMoney : 예수금 초기에 입력이 가능하다면 입력, 0으로 시작할거면 0 입력
      *
-     * ex) localhost:8080/api/v1/portfolio/input/folioname?userId=test6&portFolioName=testv3&portFolioType=normal&portFolioMoney=30000
+     * ex) localhost:8080/api/v1/portfolio/input/folioname?userId=test6&portFolioName=testv3&portFolioType=normal
      *
      * */
     @RequestMapping("/input/folioname")
     public ResponseInfo createFolioName(
             @RequestParam(name = "userId", required = true, defaultValue = "") String userId,
             @RequestParam(name = "portFolioName", required = true, defaultValue = "") String portFolioName,
-            @RequestParam(name = "portFolioType", required = true, defaultValue="") String portFolioType,
-            @RequestParam(name = "portFolioMoney", required = true, defaultValue = "0") String portFolioMoney
-
+            @RequestParam(name = "portFolioType", required = true, defaultValue="") String portFolioType
     ) {
-        ResponseInfo responseInfo = portFolioService.createFolioName(userId,portFolioType, portFolioName,portFolioMoney);
+        log.info("[Start createFolioName]");
+        ResponseInfo responseInfo = portFolioService.createFolioName(userId,portFolioType, portFolioName);
+        log.info("[End createFolioName]");
         return responseInfo;
     }
 
@@ -72,7 +73,9 @@ public class PortFolioController {
      * */
     @RequestMapping("/find/folio")
     public ResponseInfo findPortFolio(@RequestParam(name = "userId", required = true, defaultValue = "") String userId) {
+        log.info("[Start findPortFolio]");
         ResponseInfo responseInfo = portFolioService.findPortFolio(userId);
+        log.info("[End findPortFolio]");
         return responseInfo;
     }
 
@@ -93,9 +96,22 @@ public class PortFolioController {
             @RequestParam(name = "userId", required = true, defaultValue = "") String userId,
             @RequestParam(name = "type", required = true, defaultValue = "") String type,
             @RequestParam(name = "portFolioName", required = true, defaultValue = "") String portFolioName
-
     ) {
+        log.info("[Start findPortFolioDetail]");
         ResponseInfo responseInfo = portFolioService.findPortFolioDetail(type,userId,portFolioName);
+        log.info("[End findPortFolioDetail]");
+        return responseInfo;
+    }
+
+
+    @RequestMapping("/delete/foliodetail")
+    public ResponseInfo deletePortFolioDetail(
+            @RequestParam(name = "userId", required = true, defaultValue = "") String userId,
+            @RequestParam(name = "portFolioName", required = true, defaultValue = "") String portFolioName
+    ) {
+        log.info("[Start deletePortFolioDetail]");
+        ResponseInfo responseInfo = portFolioService.deletePortFolioDetail(userId,portFolioName);
+        log.info("[End deletePortFolioDetail]");
         return responseInfo;
     }
 
@@ -117,27 +133,28 @@ public class PortFolioController {
             @RequestParam(name = "userId", required = true, defaultValue = "") String userId,
             @RequestParam(name = "portFolioName", required = true, defaultValue = "") String portFolioName,
             @RequestParam(name = "method", required = true, defaultValue = "") String method /** update, delete */
-
     ) {
+        log.info("[Start inputStock]");
         ResponseInfo responseInfo = new ResponseInfo();
         if (type.equals("domestic")) {
-            responseInfo = portFolioService.workDomesticStock(reqBodyFormat, method, userId, portFolioName);
+            responseInfo = portFolioService.inputDomesticStock(reqBodyFormat, method, userId, portFolioName);
         } else if (type.equals("overseas")) {
-            responseInfo = portFolioService.workOverseasStock(reqBodyFormat, method, userId, portFolioName);
+            responseInfo = portFolioService.inputOverseasStock(reqBodyFormat, method, userId, portFolioName);
         } else if (type.equals("isa")) {
-            responseInfo = portFolioService.workISA(reqBodyFormat, method, userId, portFolioName);
+            responseInfo = portFolioService.inputISA(reqBodyFormat, method, userId, portFolioName);
         } else if (type.equals("personal")) {
-            responseInfo = portFolioService.workPersonal(reqBodyFormat, method, userId, portFolioName);
+            responseInfo = portFolioService.inputPersonal(reqBodyFormat, method, userId, portFolioName);
         } else if (type.equals("retirement")) {
-            responseInfo = portFolioService.workRetirement(reqBodyFormat, method, userId, portFolioName);
+            responseInfo = portFolioService.inputRetirement(reqBodyFormat, method, userId, portFolioName);
         } else if (type.equals("coin")) {
-            responseInfo = portFolioService.workCoin(reqBodyFormat, method, userId, portFolioName);
+            responseInfo = portFolioService.inputCoin(reqBodyFormat, method, userId, portFolioName);
         } else if (type.equals("noncurrent")) {
-            responseInfo = portFolioService.workNonCurrent(reqBodyFormat, method, userId, portFolioName);
+            responseInfo = portFolioService.inputNonCurrent(reqBodyFormat, method, userId, portFolioName);
         } else {
             responseInfo.setReturnCode(-1);
             responseInfo.setReturnMsg("Wrong type!!");
         }
+        log.info("[End inputStock]");
         return responseInfo;
     }
 
