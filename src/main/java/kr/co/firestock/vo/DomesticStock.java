@@ -19,9 +19,10 @@ public class DomesticStock {
     String valuationLoss; //평가 손익
     String purchaseAmount; //매수금액
     String balanceAssessment;//잔고평가액
+    String type; //어느 타입인지
 
     @Builder
-    public DomesticStock(String stockName, String stockCode, String averagePrice, String currentPrice, String quantity, String todaysFluctuationRate, String yield, String valuationLoss, String purchaseAmount, String balanceAssessment) {
+    public DomesticStock(String stockName, String stockCode, String averagePrice, String currentPrice, String quantity, String todaysFluctuationRate, String yield, String valuationLoss, String purchaseAmount, String balanceAssessment, String type) {
         this.stockName = stockName;
         this.stockCode = stockCode;
         this.averagePrice = averagePrice;
@@ -32,6 +33,7 @@ public class DomesticStock {
         this.valuationLoss = valuationLoss;
         this.purchaseAmount = purchaseAmount;
         this.balanceAssessment = balanceAssessment;
+        this.type = type;
     }
 
     @Override

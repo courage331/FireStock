@@ -19,9 +19,10 @@ public class CryptoCurrency {
     String valuationLoss; //평가 손익
     String purchaseAmount; //매수금액
     String balanceAssessment;//잔고평가액
+    String type; //어느 타입인지
 
     @Builder
-    public CryptoCurrency(String stockName, String exchange, String averagePrice, String currentPrice, String quantity, String yield, String valuationLoss, String purchaseAmount, String balanceAssessment) {
+    public CryptoCurrency(String stockName, String exchange, String averagePrice, String currentPrice, String quantity, String yield, String valuationLoss, String purchaseAmount, String balanceAssessment, String type) {
         this.stockName = stockName;
         this.exchange = exchange;
         this.averagePrice = averagePrice;
@@ -31,6 +32,7 @@ public class CryptoCurrency {
         this.valuationLoss = valuationLoss;
         this.purchaseAmount = purchaseAmount;
         this.balanceAssessment = balanceAssessment;
+        this.type = type;
     }
 
     @Override

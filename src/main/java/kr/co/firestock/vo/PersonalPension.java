@@ -23,9 +23,10 @@ public class PersonalPension {
     String targetQuantity; //목표 수량
     String operationFee; //운용보수
     String payCalculation; //보수계산
+    String type; //어느 타입인지
 
     @Builder
-    public PersonalPension(String stockName, String stockCode, String averagePrice, String currentPrice, String quantity, String yield, String purchaseAmount, String balanceAssessment, String currentWeight, String targetWeight, String targetQuantity, String operationFee, String payCalculation) {
+    public PersonalPension(String stockName, String stockCode, String averagePrice, String currentPrice, String quantity, String yield, String purchaseAmount, String balanceAssessment, String currentWeight, String targetWeight, String targetQuantity, String operationFee, String payCalculation, String type) {
         this.stockName = stockName;
         this.stockCode = stockCode;
         this.averagePrice = averagePrice;
@@ -39,6 +40,7 @@ public class PersonalPension {
         this.targetQuantity = targetQuantity;
         this.operationFee = operationFee;
         this.payCalculation = payCalculation;
+        this.type = type;
     }
 
     @Override

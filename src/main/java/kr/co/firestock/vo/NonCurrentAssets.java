@@ -15,14 +15,16 @@ public class NonCurrentAssets {
     String monthlyPaymentMonth;// 납입 월 수
     String totalPayment; //총 납입 금액
     String totalAppraisalValue; //총 평가 금액
+    String type; //어느 타입인지
 
     @Builder
-    public NonCurrentAssets(String stockName, String monthlyPayment, String monthlyPaymentMonth, String totalPayment, String totalAppraisalValue) {
+    public NonCurrentAssets(String stockName, String monthlyPayment, String monthlyPaymentMonth, String totalPayment, String totalAppraisalValue, String type) {
         this.stockName = stockName;
         this.monthlyPayment = monthlyPayment;
         this.monthlyPaymentMonth = monthlyPaymentMonth;
         this.totalPayment = totalPayment;
         this.totalAppraisalValue = totalAppraisalValue;
+        this.type = type;
     }
 
     @Override

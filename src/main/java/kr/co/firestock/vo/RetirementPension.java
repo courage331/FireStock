@@ -21,10 +21,10 @@ public class RetirementPension {
     String currentWeight; //현재 비중
     String targetWeight; //목표 비중
     String targetQuantity; //목표 수량
+    String type; //어느 타입인지
 
     @Builder
-
-    public RetirementPension(String stockName, String stockCode, String averagePrice, String currentPrice, String quantity, String yield, String purchaseAmount, String balanceAssessment, String currentWeight, String targetWeight, String targetQuantity) {
+    public RetirementPension(String stockName, String stockCode, String averagePrice, String currentPrice, String quantity, String yield, String purchaseAmount, String balanceAssessment, String currentWeight, String targetWeight, String targetQuantity, String type) {
         this.stockName = stockName;
         this.stockCode = stockCode;
         this.averagePrice = averagePrice;
@@ -36,6 +36,7 @@ public class RetirementPension {
         this.currentWeight = currentWeight;
         this.targetWeight = targetWeight;
         this.targetQuantity = targetQuantity;
+        this.type = type;
     }
 
     @Override
