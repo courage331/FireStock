@@ -70,3 +70,8 @@ upbit :
     minuteCandle: https://api.upbit.com/v1/candles/minutes
     orderbook: https://api.upbit.com/v1/orderbook
     accounts: https://api.upbit.com/v1/accounts
+
+binance:
+  key:
+  address:
+    market: https://api.binance.com/api/v3/ticker/price
