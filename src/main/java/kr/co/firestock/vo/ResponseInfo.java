@@ -10,8 +10,8 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 public class ResponseInfo {
-    private int returnCode = 0;
-    private String returnMsg = "성공";
+    private int returnCode;
+    private String returnMsg;
     private Object data = null;
 
     public ResponseInfo(int returnCode,String returnMsg) {

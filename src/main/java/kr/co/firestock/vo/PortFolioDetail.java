@@ -12,38 +12,22 @@ public class PortFolioDetail {
 
     String portFolioType;
 
-    String portFolioMoney;
+    int portFolioWonMoney;
+
+    int portFolioDollarMoney;
 
     String regDt;
 
     String upDt;
 
-    List<DomesticStock> domesticStocks;
+    List<PortFolioData> portFolioDataList;
 
-    List<OverseasStock> overseasStocks;
-
-    List<ISA> isas;
-
-    List<PersonalPension> personalPensions;
-
-    List<RetirementPension> retirementPensions;
-
-    List<CryptoCurrency> cryptoCurrencys;
-
-    List<NonCurrentAssets> nonCurrentAssets;
-
-    @Builder
-    public PortFolioDetail(String portFolioType, String portFolioMoney, String regDt, String upDt, List<DomesticStock> domesticStocks, List<OverseasStock> overseasStocks, List<ISA> isas, List<PersonalPension> personalPensions, List<RetirementPension> retirementPensions, List<CryptoCurrency> cryptoCurrencys, List<NonCurrentAssets> nonCurrentAssets) {
+    public PortFolioDetail(String portFolioType, int portFolioWonMoney, int portFolioDollarMoney, String regDt, String upDt, List<PortFolioData> portFolioDataList) {
         this.portFolioType = portFolioType;
-        this.portFolioMoney = portFolioMoney;
+        this.portFolioWonMoney = portFolioWonMoney;
+        this.portFolioDollarMoney = portFolioDollarMoney;
         this.regDt = regDt;
         this.upDt = upDt;
-        this.domesticStocks = domesticStocks;
-        this.overseasStocks = overseasStocks;
-        this.isas = isas;
-        this.personalPensions = personalPensions;
-        this.retirementPensions = retirementPensions;
-        this.cryptoCurrencys = cryptoCurrencys;
-        this.nonCurrentAssets = nonCurrentAssets;
+        this.portFolioDataList = portFolioDataList;
     }
 }

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/portfolio")
-//@CrossOrigin("*")
 public class PortFolioController {
 
     @Autowired
@@ -117,45 +116,45 @@ public class PortFolioController {
 
     /**
      * 포트폴리오 데이터를 삽입한다.
-     * ex) localhost:8080/api/v1/portfolio/input/stock?type=coin&userId=test6&method=update&portFolioName=testv3
+     * ex) localhost:8080/api/v1/portfolio/input/stock?&userId=test6&method=update&portFolioName=testv3
      *
      * param)
-     * type = 어떤 타입의 데이터인지 ex) 국내 주식이면 domestic, ISA 이면 isa 처럼
      * userId = 사용자 아아디
-     * method = update, delete 중에서 선택 삭제할거면 delete, 데이터를 삽입하거나 갱신할거면 update
      * portFolioName = 어떤 포트폴리오에서 작업할건지
+     * method = sell(매매), buy(매수) update(추가), delete(삭제)
      *
      * */
     @RequestMapping("/input/stock")
     public ResponseInfo inputStock(
             @RequestBody ReqBodyFormat reqBodyFormat,
-            @RequestParam(name = "type", required = true, defaultValue = "") String type,
             @RequestParam(name = "userId", required = true, defaultValue = "") String userId,
             @RequestParam(name = "portFolioName", required = true, defaultValue = "") String portFolioName,
-            @RequestParam(name = "method", required = true, defaultValue = "") String method /** update, delete */
+            @RequestParam(name = "method", required = true, defaultValue = "") String method /** sell(매매), buy(매수) update(추가), delete(삭제) */
     ) {
         log.info("[Start inputStock]");
-        ResponseInfo responseInfo = new ResponseInfo();
-        if (type.equals("domestic")) {
-            responseInfo = portFolioService.inputDomesticStock(reqBodyFormat, method, userId, portFolioName);
-        } else if (type.equals("overseas")) {
-            responseInfo = portFolioService.inputOverseasStock(reqBodyFormat, method, userId, portFolioName);
-        } else if (type.equals("isa")) {
-            responseInfo = portFolioService.inputISA(reqBodyFormat, method, userId, portFolioName);
-        } else if (type.equals("personal")) {
-            responseInfo = portFolioService.inputPersonal(reqBodyFormat, method, userId, portFolioName);
-        } else if (type.equals("retirement")) {
-            responseInfo = portFolioService.inputRetirement(reqBodyFormat, method, userId, portFolioName);
-        } else if (type.equals("coin")) {
-            responseInfo = portFolioService.inputCoin(reqBodyFormat, method, userId, portFolioName);
-        } else if (type.equals("noncurrent")) {
-            responseInfo = portFolioService.inputNonCurrent(reqBodyFormat, method, userId, portFolioName);
-        } else {
-            responseInfo.setReturnCode(-1);
-            responseInfo.setReturnMsg("Wrong type!!");
-        }
+        ResponseInfo responseInfo = portFolioService.inputPortFolioData(reqBodyFormat, method, userId, portFolioName);
         log.info("[End inputStock]");
         return responseInfo;
     }
 
+    /**
+     * 포트폴리오 데이터를 삽입한다.
+     * ex) localhost:8080/api/v1/portfolio/input/won?&userId=test6&method=input&portFolioName=testv3&money=10000
+     *
+     * param)
+     * userId = 사용자 아아디
+     * portFolioName = 어떤 포트폴리오에서 작업할건지
+     * method = input(돈 넣기), output(돈 뺴내기)
+     * money = 넣는(뺄) 금액 -- 뺀 금액이 현재 있는 금액보다 클 경우 returnCode = -1이 된다.
+     * */
+    @RequestMapping("/input/won")
+    public ResponseInfo inputWon(
+        @RequestParam(name = "userId", required = true, defaultValue = "") String userId,
+        @RequestParam(name = "portFolioName", required = true, defaultValue = "") String portFolioName,
+        @RequestParam(name = "method", required = true, defaultValue = "") String method,  /**input output */
+        @RequestParam(name = "money", required = true, defaultValue ="") int money
+    ) {
+        ResponseInfo responseInfo = portFolioService.inputWon(method, userId, portFolioName, money);
+        return responseInfo;
+    }
 }
