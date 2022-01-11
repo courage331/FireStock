@@ -9,12 +9,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/auth")
-//@CrossOrigin("*")
 public class LoginController {
 
     @Autowired
@@ -39,8 +39,8 @@ public class LoginController {
       }
      * */
     @PostMapping("/join")
-    public ResponseInfo createUser(@RequestBody User user){
-        log.info("[Start createUser]");
+    public ResponseInfo createUser(HttpServletRequest request, @RequestBody User user){
+        log.info("[Start createUser][{}]",request.getRequestURL());
         ResponseInfo responseInfo = loginService.createUser(user);
         if(responseInfo.getReturnCode()!=0){
             return responseInfo;
@@ -50,7 +50,7 @@ public class LoginController {
             return responseInfo;
         }
         responseInfo.setReturnMsg("[회원가입 성공!]");
-        log.info("[End createUser]");
+        log.info("[End createUser][{}]",request.getRequestURL());
         return responseInfo;
     }
 
@@ -69,10 +69,10 @@ public class LoginController {
      }
      */
     @PostMapping("/login")
-    public ResponseInfo login(@RequestBody LoginRequest loginRequest){
-        log.info("[Start login]");
+    public ResponseInfo login(HttpServletRequest request, @RequestBody LoginRequest loginRequest){
+        log.info("[Start login][{}]",request.getRequestURL());
         ResponseInfo responseInfo = loginService.createToken(loginRequest);
-        log.info("[End login]");
+        log.info("[End login][{}]",request.getRequestURL());
         return responseInfo;
     }
 
@@ -91,31 +91,32 @@ public class LoginController {
 
      */
     @PostMapping("/info")
-    public ResponseInfo getUserFromToken(@RequestBody Map<String,String> param){
-        log.info("[Start getUserFromToken]");
+    public ResponseInfo getUserFromToken(HttpServletRequest request, @RequestBody Map<String,String> param){
+        log.info("[Start getUserFromToken][{}]",request.getRequestURL());
         ResponseInfo responseInfo = loginService.findUserInfo(param.get("token"));
-        log.info("[End getUserFromToken]");
+        log.info("[End getUserFromToken][{}]",request.getRequestURL());
         return responseInfo;
     }
 
     /** 아이디 중복확인 */
     @GetMapping("/check/id/{_id}")
-    public ResponseInfo checkId(@PathVariable(value="_id") String _id){
-        log.info("[Start checkId]");
+    public ResponseInfo checkId(HttpServletRequest request, @PathVariable(value="_id") String _id){
+        log.info("[Start checkId][{}]",request.getRequestURL());
         ResponseInfo responseInfo = loginService.findUserId(_id);
-        log.info("[End checkId]");
+        log.info("[End checkId][{}]",request.getRequestURL());
         return responseInfo;
     }
 
     /**비밀번호 변경 */
     @GetMapping("/find/password/{_id}")
     public ResponseInfo findPassword(
+            HttpServletRequest request,
             @PathVariable(value="_id") String _id,
             @RequestParam(name = "password", required = true, defaultValue = "") String password
     ){
-        log.info("[Start findPassword]");
+        log.info("[Start findPassword][{}]",request.getRequestURL());
         ResponseInfo responseInfo = loginService.findPassword(_id,password);
-        log.info("[End findPassword]");
+        log.info("[End findPassword][{}]",request.getRequestURL());
         return responseInfo;
     }
 }

@@ -13,7 +13,6 @@ import java.util.UUID;
 @Slf4j
 @RestController
 @RequestMapping("/api/v1/crypto")
-//@CrossOrigin("*")
 public class CryptoController {
 
     @Autowired
@@ -76,7 +75,7 @@ public class CryptoController {
      *
      * ex) localhost:8080/api/v1/crypto/input/marketdata
      */
-    //    @Scheduled(fixedDelay = 5 * 60 * 1000, initialDelay = 15000)
+    @Scheduled(fixedDelay = 5 * 60 * 1000, initialDelay = 15000)
     @RequestMapping("/input/binancedata")
     public ResponseInfo inputBinanceCoinData(){
         String Session = UUID.randomUUID().toString();

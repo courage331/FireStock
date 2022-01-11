@@ -1,5 +1,6 @@
 package kr.co.firestock.service;
 
+import kr.co.firestock.repository.HistoryMongoRepository;
 import kr.co.firestock.repository.PortFolioMongoRespository;
 import kr.co.firestock.util.StringUtil;
 import kr.co.firestock.vo.*;
@@ -17,6 +18,9 @@ public class PortFolioService {
 
     @Autowired
     PortFolioMongoRespository portFolioMongoRespository;
+
+    @Autowired
+    HistoryMongoRepository historyMongoRepository;
 
     public ResponseInfo createFolio(String userId) {
         Boolean isExist = portFolioMongoRespository.existsBy_id(userId);
@@ -61,13 +65,10 @@ public class PortFolioService {
         try {
             PortFolio polio = portFolioMongoRespository.findBy_id(userId);
             if (null == polio) {
-                return new ResponseInfo(-1, "[존재하지 않는 사용자 입니다..]");
+                return new ResponseInfo(-1, "[존재하지 않는 사용자 입니다]");
             }
             PortFolioDetail portFolioDetail = polio.getPortFolioDetailMap().get(portFolioName);
             List<PortFolioData> portFolioDetailList = portFolioDetail.getPortFolioDataList();
-            if (null == portFolioDetail) {
-                return new ResponseInfo(-1, "[없는 포트폴리오명입니다.]");
-            }
 
             if(type.equals("all")){
                 returnData = portFolioDetailList;
@@ -128,20 +129,14 @@ public class PortFolioService {
                 stockInfo(reqBodyFormat.getStockInfo()).
                 stockName(reqBodyFormat.getStockName()).
                 stockType(reqBodyFormat.getStockType()).
-                currentPrice(reqBodyFormat.getCurrentPrice()).
-                purchasePrice(reqBodyFormat.getPurchasePrice()).
-                totSum(reqBodyFormat.getTotSum()).
-                totProfit(reqBodyFormat.getTotProfit()).
-                totAmount(reqBodyFormat.getTotAmount())
-                .build();
+                stockPrice(reqBodyFormat.getStockPrice()).
+                stockAmount(reqBodyFormat.getStockAmount()).build();
 
         boolean removechk = true;
-        String currentMoney =  "0";
-
+        String currentMoney = String.valueOf(Integer.parseInt(reqBodyFormat.getStockAmount()) * Integer.parseInt(reqBodyFormat.getStockPrice()));
         /** 이미 존재한다면 기존에 있던것을 삭제하고 새로운 데이터를 집어넣음*/
         for (int i = 0; i < portFolioDataList.size(); i++) {
             if(portFolioDataList.get(i).getStockName().equals(portFolioData.getStockName())){
-                currentMoney = portFolioDataList.get(i).getTotSum();
                 portFolioDataList.remove(i);
                 removechk = false;
                 break;
@@ -156,6 +151,11 @@ public class PortFolioService {
             if(method.equals("sell")){
                 int newCurretMoney =  portFolioDetail.getPortFolioWonMoney() + Integer.parseInt(currentMoney);
                 portFolioDetail.setPortFolioWonMoney(newCurretMoney);
+                History history = History.builder().
+                        userId(userId).portFolioName(portFolioName).type(method).money(currentMoney).
+                        regdt(new StringUtil().makeTodayDate()).portFolioData(portFolioData).
+                        build();
+                historyMongoRepository.save(history);
             }
 
         } else if (method.equals("update") || method.equals("buy")) {
@@ -163,7 +163,15 @@ public class PortFolioService {
 
             if(method.equals("buy")){
                 int newCurretMoney =  portFolioDetail.getPortFolioWonMoney() - Integer.parseInt(currentMoney);
+                if(newCurretMoney<0){
+                    return new ResponseInfo(-1,"Fail","cant buy");
+                }
                 portFolioDetail.setPortFolioWonMoney(newCurretMoney);
+                History history = History.builder().
+                        userId(userId).portFolioName(portFolioName).type(method).money(currentMoney).
+                        regdt(new StringUtil().makeTodayDate()).portFolioData(portFolioData).
+                        build();
+                historyMongoRepository.save(history);
             }
         } else {
             return new ResponseInfo(-1, "Wrong method");
@@ -176,25 +184,45 @@ public class PortFolioService {
         return new ResponseInfo(0, method + " 성공", portFolioDataList);
     }
 
-    public ResponseInfo inputWon(String method, String userId, String portFolioName, int money) {
+    public ResponseInfo inputWon(String method, String userId, String portFolioName, int money, String moneyType) {
 
         ResponseInfo responseInfo = new ResponseInfo();
         PortFolio portFolio = portFolioMongoRespository.findBy_id(userId);
         HashMap<String, PortFolioDetail> map = portFolio.getPortFolioDetailMap();
         PortFolioDetail portFolioDetail = map.get(portFolioName);
-        int won = portFolioDetail.getPortFolioWonMoney();
+        int wonMoney = portFolioDetail.getPortFolioWonMoney();
+        int dollarMoney = portFolioDetail.getPortFolioDollarMoney();
 
-        if(method.equals("input")){
-            won += money;
-        }else if(method.equals("output")){
-            if(won-money<0){
-                return new ResponseInfo(-1,"Fail");
+        if(moneyType.equals("won")){
+            if(method.equals("input")){
+                wonMoney += money;
+            }else if(method.equals("output")){
+                if(wonMoney-money<0){
+                    return new ResponseInfo(-1,"Fail");
+                }
+                wonMoney -= money;
             }
-            won -= money;
+        }else if(moneyType.equals("dollar")){
+            if(method.equals("input")){
+                dollarMoney += money;
+            }else if(method.equals("output")){
+                if(dollarMoney-money<0){
+                    return new ResponseInfo(-1,"Fail");
+                }
+                dollarMoney -= money;
+            }
+        }else{
+            return new ResponseInfo(-1,"Fail","moneyType error");
         }
+        portFolioDetail.setPortFolioWonMoney(wonMoney);
+        portFolioDetail.setPortFolioDollarMoney(dollarMoney);
+        portFolioDetail.setUpDt(new StringUtil().makeTodayDate());
+        map.put(portFolioName, portFolioDetail);
+        portFolioMongoRespository.save(new PortFolio(userId, map));
+
         responseInfo.setReturnCode(0);
         responseInfo.setReturnMsg("Success");
-        responseInfo.setData(won);
-        return responseInfo;
+        responseInfo.setData(moneyType+"::"+method+"::"+money+"::성공");
+       return responseInfo;
     }
 }
