@@ -91,8 +91,8 @@ public class LoginService {
         ResponseInfo responseInfo = new ResponseInfo();
         try {
             User user = jwtTokenProvider.getUserInfoInAuthentication(token);
-            responseInfo.setReturnCode(0);
-            responseInfo.setReturnMsg("Success");
+            responseInfo.setReturnCode(1);
+            responseInfo.setReturnMsg("[유저 정보 조회 성공]");
             responseInfo.setData(user);
             log.info("[findUserInfo Success][{}]",user.toString());
         } catch (Exception e) {

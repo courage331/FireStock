@@ -26,7 +26,7 @@ public class PortFolioService {
         Boolean isExist = portFolioMongoRespository.existsBy_id(userId);
         if (!isExist) {
             portFolioMongoRespository.save(new PortFolio(userId, new HashMap<>()));
-            return new ResponseInfo(0, "Create Success");
+            return new ResponseInfo(0, "[포트폴리오 생성 성공!]");
         } else {
             return new ResponseInfo(-1, "userId Already Exists!");
         }
@@ -54,10 +54,10 @@ public class PortFolioService {
 
     public ResponseInfo findPortFolio(String userId) {
         PortFolio polio = portFolioMongoRespository.findBy_id(userId);
-        if(null == polio){
-            return new ResponseInfo(-1,"존재하지 않는 사용자 ID입니다.");
+        if (null == polio) {
+            return new ResponseInfo(-1, "존재하지 않는 사용자 ID입니다.");
         }
-        return new ResponseInfo(0, "Success", polio);
+        return new ResponseInfo(1, "Success", polio);
     }
 
     public ResponseInfo findPortFolioDetail(String type, String userId, String portFolioName) {
@@ -70,13 +70,15 @@ public class PortFolioService {
             PortFolioDetail portFolioDetail = polio.getPortFolioDetailMap().get(portFolioName);
             List<PortFolioData> portFolioDetailList = portFolioDetail.getPortFolioDataList();
 
-            if(type.equals("all")){
+            if (type.equals("all")) {
+                return new ResponseInfo(1, "[PortFolioDeatil 조회 성공]", portFolioDetail);
+            } else if (type.equals("list")) {
                 returnData = portFolioDetailList;
-            }else{
-                returnData = this.makePortFolioDetailList(portFolioDetailList,type);
+            } else {
+                returnData = this.makePortFolioDetailList(portFolioDetailList, type);
             }
 
-            return new ResponseInfo(0, "Success", returnData);
+            return new ResponseInfo(1, "[PortFolioDeatil 조회 성공]", returnData);
         } catch (Exception e) {
             log.error("[findPortFolioDetail Error][{}]", e.toString());
             return new ResponseInfo(-1, "[없는 포트폴리오명입니다.]", e.toString());
@@ -88,8 +90,8 @@ public class PortFolioService {
      */
     private List<PortFolioData> makePortFolioDetailList(List<PortFolioData> portFolioDetailList, String type) {
         List<PortFolioData> returnData = new ArrayList<>();
-        for(int i=0; i<portFolioDetailList.size(); i++){
-            if(portFolioDetailList.get(i).getStockType().equals(type)){
+        for (int i = 0; i < portFolioDetailList.size(); i++) {
+            if (portFolioDetailList.get(i).getStockType().equals(type)) {
                 returnData.add(portFolioDetailList.get(i));
             }
         }
@@ -102,19 +104,23 @@ public class PortFolioService {
      */
     public ResponseInfo deletePortFolioDetail(String userId, String portFolioName) {
         PortFolio portFolio = portFolioMongoRespository.findBy_id(userId);
-        if(null == portFolio){
-            return new ResponseInfo(-1,"[존재하지 않는 사용자 입니다.]");
+        if (null == portFolio) {
+            return new ResponseInfo(-1, "[존재하지 않는 사용자 입니다.]");
         }
         HashMap<String, PortFolioDetail> map = portFolio.getPortFolioDetailMap();
-        if(map.size()==0){
-            return new ResponseInfo(-1,"[삭제할 포트폴리오가 없습니다.]");
+        if (map.size() == 0) {
+            return new ResponseInfo(-1, "[삭제할 포트폴리오가 없습니다.]");
         }
         map.remove(portFolioName);
         portFolio.setPortFolioDetailMap(map);
         portFolioMongoRespository.save(portFolio);
-        return new ResponseInfo(0,"["+portFolioName+" 포트폴리오 삭제에 성공했습니다.]");
+        return new ResponseInfo(0, "[" + portFolioName + " 포트폴리오 삭제에 성공했습니다.]");
     }
 
+    /**
+     * 주식 추가
+     * 평단 계산
+     */
     public ResponseInfo inputPortFolioData(ReqBodyFormat reqBodyFormat, String method, String userId, String portFolioName) {
         PortFolio polio = portFolioMongoRespository.findBy_id(userId);
         HashMap<String, PortFolioDetail> map = polio.getPortFolioDetailMap();
@@ -133,42 +139,75 @@ public class PortFolioService {
                 stockAmount(reqBodyFormat.getStockAmount()).build();
 
         boolean removechk = true;
+        /** 현재 수익 = (주식 가격 * 수량)  */
         String currentMoney = String.valueOf(Integer.parseInt(reqBodyFormat.getStockAmount()) * Integer.parseInt(reqBodyFormat.getStockPrice()));
-        /** 이미 존재한다면 기존에 있던것을 삭제하고 새로운 데이터를 집어넣음*/
-        for (int i = 0; i < portFolioDataList.size(); i++) {
-            if(portFolioDataList.get(i).getStockName().equals(portFolioData.getStockName())){
-                portFolioDataList.remove(i);
-                removechk = false;
-                break;
-            }
-        }
-
         if (method.equals("delete") || method.equals("sell")) {
+            PortFolioData oldData = null;
+            int amt = 0;
+            /** 이미 존재한다면 기존에 있던것을 삭제하고 새로운 데이터를 집어넣음*/
+            for (int i = 0; i < portFolioDataList.size(); i++) {
+                if (portFolioDataList.get(i).getStockName().equals(portFolioData.getStockName())) {
+                    oldData = portFolioDataList.get(i);
+                    if (Integer.parseInt(portFolioData.getStockAmount()) >= Integer.parseInt(reqBodyFormat.getStockAmount())) {
+                        amt = (Integer.parseInt(portFolioDataList.get(i).getStockAmount()) - Integer.parseInt(reqBodyFormat.getStockAmount()));
+                    }
+                    portFolioDataList.remove(i);
+                    removechk = false;
+                    break;
+                }
+            }
+            oldData.setStockAmount(String.valueOf(amt));
             if (removechk) {
                 return new ResponseInfo(-1, "Delete Fail");
             }
+            if(amt>0){
+                portFolioDataList.add(oldData);
+            }
 
-            if(method.equals("sell")){
-                int newCurretMoney =  portFolioDetail.getPortFolioWonMoney() + Integer.parseInt(currentMoney);
+            if (method.equals("sell")) {
+                /**판매금액 만큼 더해 주기*/
+                int newCurretMoney = portFolioDetail.getPortFolioWonMoney() + Integer.parseInt(currentMoney);
                 portFolioDetail.setPortFolioWonMoney(newCurretMoney);
                 History history = History.builder().
-                        userId(userId).portFolioName(portFolioName).type(method).money(currentMoney).
+                        userId(userId).portFolioName(portFolioName).type(method).
+                        money(currentMoney).
                         regdt(new StringUtil().makeTodayDate()).portFolioData(portFolioData).
                         build();
                 historyMongoRepository.save(history);
             }
 
         } else if (method.equals("update") || method.equals("buy")) {
+            /** 이미 존재한다면 기존에 있던것을 삭제하고 새로운 데이터를 집어넣음*/
+            int avg = 0;
+            int amt = 0;
+            boolean avgchk = false;
+            for (int i = 0; i < portFolioDataList.size(); i++) {
+                if (portFolioDataList.get(i).getStockName().equals(portFolioData.getStockName())) {
+                    amt = (Integer.parseInt(reqBodyFormat.getStockAmount()) + Integer.parseInt(portFolioDataList.get(i).getStockAmount()));
+                    /**평단 계산 */
+                    avg = (Integer.parseInt(reqBodyFormat.getStockPrice()) * Integer.parseInt(reqBodyFormat.getStockAmount()) +
+                            (Integer.parseInt(portFolioDataList.get(i).getStockPrice()) * (Integer.parseInt(portFolioDataList.get(i).getStockAmount()))))
+                            / (amt);
+                    avgchk = true;
+                    portFolioDataList.remove(i);
+                    break;
+                }
+            }
+            if (avgchk) {
+                portFolioData.setStockPrice(String.valueOf(avg));
+                portFolioData.setStockAmount(String.valueOf(amt));
+            }
             portFolioDataList.add(portFolioData);
 
-            if(method.equals("buy")){
-                int newCurretMoney =  portFolioDetail.getPortFolioWonMoney() - Integer.parseInt(currentMoney);
-                if(newCurretMoney<0){
-                    return new ResponseInfo(-1,"Fail","cant buy");
+            if (method.equals("buy")) {
+                int newCurretMoney = portFolioDetail.getPortFolioWonMoney() - Integer.parseInt(currentMoney);
+                if (newCurretMoney < 0) {
+                    return new ResponseInfo(-1, "Fail", "cant buy");
                 }
                 portFolioDetail.setPortFolioWonMoney(newCurretMoney);
                 History history = History.builder().
-                        userId(userId).portFolioName(portFolioName).type(method).money(currentMoney).
+                        userId(userId).portFolioName(portFolioName).type(method).
+                        money(currentMoney).
                         regdt(new StringUtil().makeTodayDate()).portFolioData(portFolioData).
                         build();
                 historyMongoRepository.save(history);
@@ -193,26 +232,26 @@ public class PortFolioService {
         int wonMoney = portFolioDetail.getPortFolioWonMoney();
         int dollarMoney = portFolioDetail.getPortFolioDollarMoney();
 
-        if(moneyType.equals("won")){
-            if(method.equals("input")){
+        if (moneyType.equals("won")) {
+            if (method.equals("input")) {
                 wonMoney += money;
-            }else if(method.equals("output")){
-                if(wonMoney-money<0){
-                    return new ResponseInfo(-1,"Fail");
+            } else if (method.equals("output")) {
+                if (wonMoney - money < 0) {
+                    return new ResponseInfo(-1, "Fail");
                 }
                 wonMoney -= money;
             }
-        }else if(moneyType.equals("dollar")){
-            if(method.equals("input")){
+        } else if (moneyType.equals("dollar")) {
+            if (method.equals("input")) {
                 dollarMoney += money;
-            }else if(method.equals("output")){
-                if(dollarMoney-money<0){
-                    return new ResponseInfo(-1,"Fail");
+            } else if (method.equals("output")) {
+                if (dollarMoney - money < 0) {
+                    return new ResponseInfo(-1, "Fail");
                 }
                 dollarMoney -= money;
             }
-        }else{
-            return new ResponseInfo(-1,"Fail","moneyType error");
+        } else {
+            return new ResponseInfo(-1, "Fail", "moneyType error");
         }
         portFolioDetail.setPortFolioWonMoney(wonMoney);
         portFolioDetail.setPortFolioDollarMoney(dollarMoney);
@@ -222,7 +261,7 @@ public class PortFolioService {
 
         responseInfo.setReturnCode(0);
         responseInfo.setReturnMsg("Success");
-        responseInfo.setData(moneyType+"::"+method+"::"+money+"::성공");
-       return responseInfo;
+        responseInfo.setData(moneyType + "::" + method + "::" + money + "::성공");
+        return responseInfo;
     }
 }

@@ -152,7 +152,7 @@ public class CryptoService {
         }catch(Exception e){
             log.error("[CryptoService inputBinanceCoinData Error]");
             responseInfo.setReturnCode(-1);
-            responseInfo.setReturnMsg("Fail");
+            responseInfo.setReturnMsg("[가상화폐 DB insert 실패]");
         }
         responseInfo.setData(currencyVOList);
         return responseInfo;
@@ -163,13 +163,13 @@ public class CryptoService {
         CryptoCurrencyVO cryptoCurrencyVO = new CryptoCurrencyVO();
         try{
             cryptoCurrencyVO = cryptoCurrencyRepository.findByMarket(cryptoname);
-            responseInfo.setReturnCode(0);
-            responseInfo.setReturnMsg("Success");
+            responseInfo.setReturnCode(1);
+            responseInfo.setReturnMsg("[가상화폐 단건 조회 성공]");
             responseInfo.setData(cryptoCurrencyVO);
         }catch (Exception e){
             log.error("[CryptoService findByMarket Error]");
             responseInfo.setReturnCode(-1);
-            responseInfo.setReturnMsg("Fail");
+            responseInfo.setReturnMsg("[가상화폐 단건 조회 실패]");
         }
 
         return responseInfo;
@@ -197,13 +197,13 @@ public class CryptoService {
         List<CryptoCurrencyVO> currencyVOList = new ArrayList<>();
         try{
             currencyVOList = cryptoCurrencyRepository.findAll();
-            responseInfo.setReturnCode(0);
-            responseInfo.setReturnMsg("Success");
+            responseInfo.setReturnCode(1);
+            responseInfo.setReturnMsg("[모든 가상 화폐 조회 성공]");
             responseInfo.setData(currencyVOList);
         }catch (Exception e){
             log.error("[CryptoService findAll Error]");
             responseInfo.setReturnCode(-1);
-            responseInfo.setReturnMsg("Fail");
+            responseInfo.setReturnMsg("[모든 가상 화폐 조회 실패]");
         }
         return responseInfo;
     }
