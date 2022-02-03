@@ -107,6 +107,15 @@ public class LoginController {
         return responseInfo;
     }
 
+    /** 회원 탈퇴 */
+    @DeleteMapping("/delete/{_id}")
+    public ResponseInfo deleteUser(HttpServletRequest request, @PathVariable(value="_id") String _id){
+        log.info("[Start deleteUser][{}]",request.getRequestURL());
+        ResponseInfo responseInfo = loginService.deleteUser(_id);
+        log.info("[End deleteUser][{}]",request.getRequestURL());
+        return responseInfo;
+    }
+
     /**비밀번호 변경 */
     @GetMapping("/find/password/{_id}")
     public ResponseInfo findPassword(
@@ -117,6 +126,18 @@ public class LoginController {
         log.info("[Start findPassword][{}]",request.getRequestURL());
         ResponseInfo responseInfo = loginService.findPassword(_id,password);
         log.info("[End findPassword][{}]",request.getRequestURL());
+        return responseInfo;
+    }
+
+
+    /**닉네임 변경 */
+    @GetMapping("/change/nickname/{_id}/{nickname}")
+    public ResponseInfo changeNickname(
+            HttpServletRequest request, @PathVariable(value="_id") String _id, @PathVariable(value="nickname") String nickname
+    ){
+        log.info("[Start changeNickname][{}]",request.getRequestURL());
+        ResponseInfo responseInfo = loginService.changeNickname(_id,nickname);
+        log.info("[End changeNickname][{}]",request.getRequestURL());
         return responseInfo;
     }
 }

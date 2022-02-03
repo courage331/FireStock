@@ -71,9 +71,9 @@ public class LoginService {
             log.info("[{} 유저 로그인 성공!]", loginRequest.get_id());
             return new ResponseInfo(0, "[로그인 성공!]", loginUser);
         } catch (Exception e) {
-            log.error(loginRequest.get_id() +" : 에해당하는 아이디는 존재하지 않습니다.");
+            log.error(loginRequest.get_id() + " : 에해당하는 아이디는 존재하지 않습니다.");
             log.error("[createToken Error][{}]", e.toString());
-            return new ResponseInfo(-1, "[로그인 실패!]",e.toString());
+            return new ResponseInfo(-1, "[로그인 실패!]", e.toString());
         }
     }
 
@@ -94,7 +94,7 @@ public class LoginService {
             responseInfo.setReturnCode(1);
             responseInfo.setReturnMsg("[유저 정보 조회 성공]");
             responseInfo.setData(user);
-            log.info("[findUserInfo Success][{}]",user.toString());
+            log.info("[findUserInfo Success][{}]", user.toString());
         } catch (Exception e) {
             responseInfo.setReturnCode(-1);
             responseInfo.setReturnMsg("Fail");
@@ -120,13 +120,37 @@ public class LoginService {
 
     public ResponseInfo findPassword(String _id, String password) {
         Optional<User> user = userMongoRepository.findBy_id(_id);
-        if(!user.isPresent()){
-            return new ResponseInfo(-1,"[존재하지 않는 유저입니다.]");
+        if (!user.isPresent()) {
+            return new ResponseInfo(-1, "[존재하지 않는 유저입니다.]");
         }
         User changeUser = user.get();
         changeUser.setPassword(passwordEncoder.encode(password));
         changeUser.setUpdDt(new StringUtil().makeTodayDate());
         userMongoRepository.save(changeUser);
-        return new ResponseInfo(0,"[비밀번호가 변경되었습니다.]");
+        return new ResponseInfo(0, "[비밀번호가 변경되었습니다.]");
+    }
+
+    public ResponseInfo deleteUser(String _id) {
+        ResponseInfo responseInfo = new ResponseInfo();
+        Optional<User> user = userMongoRepository.findBy_id(_id);
+        userMongoRepository.deleteById(_id);
+        if (!user.isPresent()) {
+            return new ResponseInfo(1, "[성공적으로 삭제되었습니다.]");
+        } else {
+            return new ResponseInfo(-1,"[삭제 실패!]");
+        }
+    }
+
+    public ResponseInfo changeNickname(String _id, String nickname) {
+        Optional<User> user = userMongoRepository.findBy_id(_id);
+        if (!user.isPresent()) {
+            return new ResponseInfo(-1, "[존재하지 않는 유저입니다.]");
+        }
+        User changeUser = user.get();
+        changeUser.setNickname(nickname);
+        changeUser.setUpdDt(new StringUtil().makeTodayDate());
+        userMongoRepository.save(changeUser);
+        return new ResponseInfo(0, "[닉네임이 변경되었습니다.]",changeUser);
+
     }
 }
