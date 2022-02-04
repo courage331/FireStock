@@ -139,16 +139,16 @@ public class PortFolioService {
 
         boolean removechk = true;
         /** 현재 수익 = (주식 가격 * 수량)  */
-        String currentMoney = String.valueOf(Integer.parseInt(reqBodyFormat.getStockAmount()) * Integer.parseInt(reqBodyFormat.getStockPrice()));
+        String currentMoney = String.valueOf(Double.parseDouble(reqBodyFormat.getStockAmount()) * Double.parseDouble(reqBodyFormat.getStockPrice()));
         if (method.equals("delete") || method.equals("sell")) {
             PortFolioData oldData = null;
-            int amt = 0;
+            double amt = 0;
             /** 이미 존재한다면 기존에 있던것을 삭제하고 새로운 데이터를 집어넣음*/
             for (int i = 0; i < portFolioDataList.size(); i++) {
                 if (portFolioDataList.get(i).getStockName().equals(portFolioData.getStockName())) {
                     oldData = portFolioDataList.get(i);
-                    if (Integer.parseInt(portFolioData.getStockAmount()) >= Integer.parseInt(reqBodyFormat.getStockAmount())) {
-                        amt = (Integer.parseInt(portFolioDataList.get(i).getStockAmount()) - Integer.parseInt(reqBodyFormat.getStockAmount()));
+                    if (Double.parseDouble(portFolioData.getStockAmount()) >= Double.parseDouble(reqBodyFormat.getStockAmount())) {
+                        amt = (Double.parseDouble(portFolioDataList.get(i).getStockAmount()) - Double.parseDouble(reqBodyFormat.getStockAmount()));
                     }
                     portFolioDataList.remove(i);
                     removechk = false;
@@ -164,8 +164,14 @@ public class PortFolioService {
             }
 
             if (method.equals("sell")) {
+                double newCurretMoney = 0;
                 /**판매금액 만큼 더해 주기*/
-                int newCurretMoney = portFolioDetail.getPortFolioWonMoney() + Integer.parseInt(currentMoney);
+                if(portFolioData.getStockType().equals("overseas")){
+                     newCurretMoney = portFolioDetail.getPortFolioDollarMoney() + Double.parseDouble(currentMoney);
+                }else{
+                     newCurretMoney = portFolioDetail.getPortFolioWonMoney() + Double.parseDouble(currentMoney);
+                }
+
                 portFolioDetail.setPortFolioWonMoney(newCurretMoney);
                 History history = History.builder().
                         userId(userId).portFolioName(portFolioName).type(method).
@@ -177,15 +183,15 @@ public class PortFolioService {
 
         } else if (method.equals("update") || method.equals("buy")) {
             /** 이미 존재한다면 기존에 있던것을 삭제하고 새로운 데이터를 집어넣음*/
-            int avg = 0;
-            int amt = 0;
+            double avg = 0;
+            double amt = 0;
             boolean avgchk = false;
             for (int i = 0; i < portFolioDataList.size(); i++) {
                 if (portFolioDataList.get(i).getStockName().equals(portFolioData.getStockName())) {
-                    amt = (Integer.parseInt(reqBodyFormat.getStockAmount()) + Integer.parseInt(portFolioDataList.get(i).getStockAmount()));
+                    amt = (Double.parseDouble(reqBodyFormat.getStockAmount()) + Double.parseDouble(portFolioDataList.get(i).getStockAmount()));
                     /**평단 계산 */
-                    avg = (Integer.parseInt(reqBodyFormat.getStockPrice()) * Integer.parseInt(reqBodyFormat.getStockAmount()) +
-                            (Integer.parseInt(portFolioDataList.get(i).getStockPrice()) * (Integer.parseInt(portFolioDataList.get(i).getStockAmount()))))
+                    avg = (Double.parseDouble(reqBodyFormat.getStockPrice()) * Double.parseDouble(reqBodyFormat.getStockAmount()) +
+                            (Double.parseDouble(portFolioDataList.get(i).getStockPrice()) * (Double.parseDouble(portFolioDataList.get(i).getStockAmount()))))
                             / (amt);
                     avgchk = true;
                     portFolioDataList.remove(i);
@@ -193,20 +199,27 @@ public class PortFolioService {
                 }
             }
             if (avgchk) {
-                portFolioData.setStockPrice(String.valueOf(avg));
-                portFolioData.setStockAmount(String.valueOf(amt));
+                portFolioData.setStockPrice(String.valueOf(Math.round(avg * 100) / 100.0));
+                portFolioData.setStockAmount(String.valueOf(Math.round(amt * 100) / 100.0));
             }
             portFolioDataList.add(portFolioData);
 
             if (method.equals("buy")) {
-                int newCurretMoney = portFolioDetail.getPortFolioWonMoney() - Integer.parseInt(currentMoney);
+                double newCurretMoney = 0;
+                /**판매금액 만큼 더해 주기*/
+                if(portFolioData.getStockType().equals("overseas")){
+                    newCurretMoney = portFolioDetail.getPortFolioDollarMoney() + Double.parseDouble(currentMoney);
+                }else{
+                    newCurretMoney = portFolioDetail.getPortFolioWonMoney() + Double.parseDouble(currentMoney);
+                }
                 if (newCurretMoney < 0) {
                     return new ResponseInfo(-1, "Fail", "cant buy");
                 }
                 portFolioDetail.setPortFolioWonMoney(newCurretMoney);
+                double doubleCurrentMoney = Double.parseDouble(currentMoney);
                 History history = History.builder().
                         userId(userId).portFolioName(portFolioName).type(method).
-                        money(currentMoney).
+                        money(String.valueOf(Math.round(doubleCurrentMoney * 100) / 100.0)).
                         regdt(new StringUtil().makeTodayDate()).portFolioData(portFolioData).
                         build();
                 historyMongoRepository.save(history);
@@ -228,8 +241,8 @@ public class PortFolioService {
         PortFolio portFolio = portFolioMongoRespository.findBy_id(userId);
         HashMap<String, PortFolioDetail> map = portFolio.getPortFolioDetailMap();
         PortFolioDetail portFolioDetail = map.get(portFolioName);
-        int wonMoney = portFolioDetail.getPortFolioWonMoney();
-        int dollarMoney = portFolioDetail.getPortFolioDollarMoney();
+        double wonMoney = portFolioDetail.getPortFolioWonMoney();
+        double dollarMoney = portFolioDetail.getPortFolioDollarMoney();
 
         if (moneyType.equals("won")) {
             if (method.equals("input")) {
@@ -253,7 +266,7 @@ public class PortFolioService {
             return new ResponseInfo(-1, "Fail", "moneyType error");
         }
         portFolioDetail.setPortFolioWonMoney(wonMoney);
-        portFolioDetail.setPortFolioDollarMoney(dollarMoney);
+        portFolioDetail.setPortFolioDollarMoney(Math.round(dollarMoney * 100) / 100.0);
         portFolioDetail.setUpDt(new StringUtil().makeTodayDate());
         map.put(portFolioName, portFolioDetail);
         portFolioMongoRespository.save(new PortFolio(userId, map));

@@ -47,6 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests() // 요청에 대한 사용권한 체크
                 .antMatchers("/api/v1/auth/**").permitAll() //auth에 대한건 체크를 안하겠다...  https://returnbliss.tistory.com/13 참고
                 .antMatchers("/api/v1/crypto/**").permitAll()
+                .antMatchers("/api/v1/manage/**").permitAll()
                 .anyRequest().authenticated() //antMatchers에 해당하는것 외에는 이부분에서 인증검사를 하겠다...
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),

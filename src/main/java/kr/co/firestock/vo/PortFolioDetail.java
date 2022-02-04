@@ -12,9 +12,9 @@ public class PortFolioDetail {
 
     String portFolioType;
 
-    int portFolioWonMoney;
+    double portFolioWonMoney;
 
-    int portFolioDollarMoney;
+    double portFolioDollarMoney;
 
     String regDt;
 
