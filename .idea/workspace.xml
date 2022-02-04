@@ -4,27 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e23e9cd-ab7a-4297-a77f-ed7a1e1c12fd" name="Default Changelist" comment="평단 맞춰서 가격 갱신 수량 갱신">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/repository/StocksMongoRepository.java" afterDir="false" />
+    <list default="true" id="3e23e9cd-ab7a-4297-a77f-ed7a1e1c12fd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/FireStockApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/FireStockApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/controller/CryptoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/controller/CryptoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/repository/CryptoCurrencyRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/controller/PortFolioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/controller/PortFolioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/repository/StocksMongoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/repository/StocksMongoRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/service/CryptoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/service/CryptoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/service/LoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/vo/PortFolioData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/vo/PortFolioData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/vo/Stocks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/vo/Stocks.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/FireStockApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/FireStockApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/service/PortFolioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/service/PortFolioService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/controller/CryptoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/controller/CryptoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/controller/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/repository/CryptoCurrencyRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/controller/PortFolioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/controller/PortFolioController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/service/CryptoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/service/CryptoService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/service/LoginService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/service/LoginService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/PortFolioData$PortFolioDataBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/PortFolioData$PortFolioDataBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/PortFolioData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/PortFolioData.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/Stocks.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/Stocks.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/service/PortFolioService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/service/PortFolioService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,17 +70,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.FireStockApplication">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="FireStockApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="FireStock" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="kr.co.firestock.FireStockApplication" />
@@ -131,7 +110,8 @@
       <workItem from="1641862115798" duration="3587000" />
       <workItem from="1641865818407" duration="817000" />
       <workItem from="1643414624264" duration="3322000" />
-      <workItem from="1643796184780" duration="7529000" />
+      <workItem from="1643796184780" duration="8759000" />
+      <workItem from="1643878574363" duration="4848000" />
     </task>
     <task id="LOCAL-00001" summary="api 경로 수정, origin 수정">
       <created>1637548948209</created>
@@ -210,7 +190,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641865765357</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="회원 관련 기능(닉네임 변경, 회원탈퇴)&#10;주식 클래스 생성 및 코인들은 mongodb에 담기도록">
+      <created>1643877496101</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1643877496101</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,6 +227,7 @@
     <MESSAGE value="데이터 구조 변경" />
     <MESSAGE value="거래내역 조회 추가" />
     <MESSAGE value="평단 맞춰서 가격 갱신 수량 갱신" />
-    <option name="LAST_COMMIT_MESSAGE" value="평단 맞춰서 가격 갱신 수량 갱신" />
+    <MESSAGE value="회원 관련 기능(닉네임 변경, 회원탈퇴)&#10;주식 클래스 생성 및 코인들은 mongodb에 담기도록" />
+    <option name="LAST_COMMIT_MESSAGE" value="회원 관련 기능(닉네임 변경, 회원탈퇴)&#10;주식 클래스 생성 및 코인들은 mongodb에 담기도록" />
   </component>
 </project>

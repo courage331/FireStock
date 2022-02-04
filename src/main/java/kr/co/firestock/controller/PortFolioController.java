@@ -163,4 +163,17 @@ public class PortFolioController {
         log.info("[End inputWon][{}]",request.getRequestURL());
         return responseInfo;
     }
+
+    /**포트폴리오 전체조회(한사람이 가지고 있는 여러개의 포트폴리오 조회 */
+    @GetMapping("/find/all/portfolio/{userId}")
+    public ResponseInfo findAllPortFolio(
+            HttpServletRequest request,
+            @PathVariable(value="userId") String userId){
+        ResponseInfo responseInfo = new ResponseInfo();
+        responseInfo = portFolioService.findAllPortFolio(userId);
+
+
+        return responseInfo;
+    }
+
 }

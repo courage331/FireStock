@@ -65,34 +65,18 @@ public class CryptoService {
             /**종 267개 */
             for (int i = 0; i < len; i++) {
                 Stocks stocks = new Stocks();
-                stocks.set_id(jsonObj.get(i).getAsJsonObject().get("market").getAsString());
-                stocks.setStockInfo(jsonObj.get(i).getAsJsonObject().get("market").getAsString());
+                String market = jsonObj.get(i).getAsJsonObject().get("market").getAsString();
+                if(!market.contains("KRW")){
+                    continue;
+                }
+                stocks.set_id(market);
+                stocks.setStockInfo(market);
                 stocks.setStockType("coin");
                 stocks.setStockName(jsonObj.get(i).getAsJsonObject().get("korean_name").getAsString());
-                JsonArray jsonArray = this.showMinuteCandle(5,jsonObj.get(i).getAsJsonObject().get("market").getAsString(),1);
+                JsonArray jsonArray = this.showMinuteCandle(5,market,1);
                 stocks.setCurrentWonPrice(jsonArray.get(0).getAsJsonObject().get("trade_price").getAsString());
 //                stocks.setCurrentDollarPrice();
                 stocks.setUpdt(new StringUtil().makeTodayDate());
-
-
-
-//                CryptoCurrencyVO  cryptoCurrencyVO = new CryptoCurrencyVO();
-//                String market = jsonObj.get(i).getAsJsonObject().get("market").getAsString();
-//                cryptoCurrencyVO.setMarket(market);
-//                cryptoCurrencyVO.setKorean_name(jsonObj.get(i).getAsJsonObject().get("korean_name").getAsString());
-//                cryptoCurrencyVO.setEnglish_name(jsonObj.get(i).getAsJsonObject().get("english_name").getAsString());
-//                JsonArray jsonArray = this.showMinuteCandle(5,market,1);
-//                cryptoCurrencyVO.setCandle_date_time_utc(new StringUtil().parseDateType(jsonArray.get(0).getAsJsonObject().get("candle_date_time_utc").getAsString()));
-//                cryptoCurrencyVO.setCandle_date_time_kst(new StringUtil().parseDateType(jsonArray.get(0).getAsJsonObject().get("candle_date_time_kst").getAsString()));
-//                cryptoCurrencyVO.setOpening_price(jsonArray.get(0).getAsJsonObject().get("opening_price").getAsString());
-//                cryptoCurrencyVO.setHigh_price(jsonArray.get(0).getAsJsonObject().get("high_price").getAsString());
-//                cryptoCurrencyVO.setLow_price(jsonArray.get(0).getAsJsonObject().get("low_price").getAsString());
-//                cryptoCurrencyVO.setTrade_price(jsonArray.get(0).getAsJsonObject().get("trade_price").getAsString());
-//                cryptoCurrencyVO.setTimestamp(jsonArray.get(0).getAsJsonObject().get("timestamp").getAsString());
-//                cryptoCurrencyVO.setCandle_acc_trade_price(jsonArray.get(0).getAsJsonObject().get("candle_acc_trade_price").getAsString());
-//                cryptoCurrencyVO.setCandle_acc_trade_volume(jsonArray.get(0).getAsJsonObject().get("candle_acc_trade_volume").getAsString());
-//                cryptoCurrencyVO.setUnit(jsonArray.get(0).getAsJsonObject().get("unit").getAsString());
-//                cryptoCurrencyVO.setUpdt(new StringUtil().makeTodayDate());
                 stocksList.add(stocks);
                 sleep(90); /** Too Many Request 피하기 위해서 사용*/
             }
@@ -171,53 +155,55 @@ public class CryptoService {
         return responseInfo;
     }
 
-//    public ResponseInfo findCryptoCurrencyInfo(String cryptoname) {
-//        ResponseInfo responseInfo = new ResponseInfo();
-//        CryptoCurrencyVO cryptoCurrencyVO = new CryptoCurrencyVO();
-//        try{
-//            cryptoCurrencyVO = cryptoCurrencyRepository.findByMarket(cryptoname);
-//            responseInfo.setReturnCode(1);
-//            responseInfo.setReturnMsg("[가상화폐 단건 조회 성공]");
-//            responseInfo.setData(cryptoCurrencyVO);
-//        }catch (Exception e){
-//            log.error("[CryptoService findByMarket Error]");
-//            responseInfo.setReturnCode(-1);
-//            responseInfo.setReturnMsg("[가상화폐 단건 조회 실패]");
-//        }
-//
-//        return responseInfo;
-//    }
-//
-//    public ResponseInfo findCryptoCurrencyInfos(String cryptonames) {
-//        ResponseInfo responseInfo = new ResponseInfo();
-//        String [] names = cryptonames.split(",");
-//        List<CryptoCurrencyVO> currencyVOList = new ArrayList<>();
-//        try{
-//            currencyVOList = cryptoCurrencyRepository.findMarketIn(names);
-//            responseInfo.setReturnCode(0);
-//            responseInfo.setReturnMsg("Success");
-//            responseInfo.setData(currencyVOList);
-//        }catch (Exception e){
-//            log.error("[CryptoService findMarketIn Error]");
-//            responseInfo.setReturnCode(-1);
-//            responseInfo.setReturnMsg("Fail");
-//        }
-//        return responseInfo;
-//    }
-//
-//    public ResponseInfo findAllCryptoCurrencyInfo() {
-//        ResponseInfo responseInfo = new ResponseInfo();
-//        List<CryptoCurrencyVO> currencyVOList = new ArrayList<>();
-//        try{
-//            currencyVOList = cryptoCurrencyRepository.findAll();
-//            responseInfo.setReturnCode(1);
-//            responseInfo.setReturnMsg("[모든 가상 화폐 조회 성공]");
-//            responseInfo.setData(currencyVOList);
-//        }catch (Exception e){
-//            log.error("[CryptoService findAll Error]");
-//            responseInfo.setReturnCode(-1);
-//            responseInfo.setReturnMsg("[모든 가상 화폐 조회 실패]");
-//        }
-//        return responseInfo;
-//    }
+    public ResponseInfo findCryptoCurrencyInfo(String stockInfo) {
+        ResponseInfo responseInfo = new ResponseInfo();
+        Stocks stocks = new Stocks();
+        try{
+            stocks = stocksMongoRepository.findByStockInfo(stockInfo);
+            responseInfo.setReturnCode(1);
+            responseInfo.setReturnMsg("[가상화폐 단건 조회 성공]");
+            responseInfo.setData(stocks);
+        }catch (Exception e){
+            log.error("[CryptoService findByMarket Error]");
+            responseInfo.setReturnCode(-1);
+            responseInfo.setReturnMsg("[가상화폐 단건 조회 실패]");
+        }
+
+        return responseInfo;
+    }
+
+    public ResponseInfo findCryptoCurrencyInfos(String markets) {
+        ResponseInfo responseInfo = new ResponseInfo();
+        String [] names = markets.split(",");
+        List<Stocks> stocksList = new ArrayList<>();
+        try{
+            for(int i=0; i<names.length; i++){
+                stocksList.add(stocksMongoRepository.findByStockInfo(names[i]));
+            }
+            responseInfo.setReturnCode(0);
+            responseInfo.setReturnMsg("Success");
+            responseInfo.setData(stocksList);
+        }catch (Exception e){
+            log.error("[CryptoService findMarketIn Error]");
+            responseInfo.setReturnCode(-1);
+            responseInfo.setReturnMsg("Fail");
+        }
+        return responseInfo;
+    }
+
+    public ResponseInfo findAllCryptoCurrencyInfo() {
+        ResponseInfo responseInfo = new ResponseInfo();
+        List<Stocks> stocksList = new ArrayList<>();
+        try{
+            stocksList = stocksMongoRepository.findAll();
+            responseInfo.setReturnCode(1);
+            responseInfo.setReturnMsg("[모든 가상 화폐 조회 성공]");
+            responseInfo.setData(stocksList);
+        }catch (Exception e){
+            log.error("[CryptoService findAll Error]");
+            responseInfo.setReturnCode(-1);
+            responseInfo.setReturnMsg("[모든 가상 화폐 조회 실패]");
+        }
+        return responseInfo;
+    }
 }

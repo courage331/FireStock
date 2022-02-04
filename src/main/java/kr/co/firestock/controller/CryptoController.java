@@ -92,31 +92,31 @@ public class CryptoController {
      * ex) localhost:8080/api/v1/crypto/find/info/BTC-ARK
      *
      * */
-//    @RequestMapping("/find/info/{cryptoname}")
-//    public ResponseInfo findCryptoCurrencyInfo(
-//            @PathVariable("cryptoname") String cryptoname){
-//        ResponseInfo responseInfo = cryptoService.findCryptoCurrencyInfo(cryptoname);
-//        return responseInfo;
-//    }
+    @RequestMapping("/find/info/{cryptoname}")
+    public ResponseInfo findCryptoCurrencyInfo(
+            @PathVariable("cryptoname") String cryptoname){
+        ResponseInfo responseInfo = cryptoService.findCryptoCurrencyInfo(cryptoname);
+        return responseInfo;
+    }
 
     /**
      * DB에 있는 여러개의 암호화폐의 정보를 호출한다.
      * ex) localhost:8080/api/v1/crypto/find/infos?cryptonames=BTC-ARK,BTC-ATOM
      * */
-//    @RequestMapping("/find/infos")
-//    public ResponseInfo findCryptoCurrencyInfos(
-//            @RequestParam(value="cryptonames") String cryptonames){
-//        ResponseInfo responseInfo = cryptoService.findCryptoCurrencyInfos(cryptonames);
-//        return responseInfo;
-//    }
+    @RequestMapping("/find/infos")
+    public ResponseInfo findCryptoCurrencyInfos(
+            @RequestParam(value="cryptonames") String cryptonames){
+        ResponseInfo responseInfo = cryptoService.findCryptoCurrencyInfos(cryptonames);
+        return responseInfo;
+    }
 
     /**
      * DB에 있는 모든 암호화폐의 정보를 호출한다.
      * ex) localhost:8080/api/v1/crypto/find/allinfo
      * */
-//    @RequestMapping("/find/allinfo")
-//    public ResponseInfo findAllCryptoCurrencyInfo(){
-//        ResponseInfo responseInfo = cryptoService.findAllCryptoCurrencyInfo();
-//        return responseInfo;
-//    }
+    @RequestMapping("/find/allinfo")
+    public ResponseInfo findAllCryptoCurrencyInfo(){
+        ResponseInfo responseInfo = cryptoService.findAllCryptoCurrencyInfo();
+        return responseInfo;
+    }
 }

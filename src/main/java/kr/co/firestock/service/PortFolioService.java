@@ -6,11 +6,10 @@ import kr.co.firestock.util.StringUtil;
 import kr.co.firestock.vo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -263,5 +262,34 @@ public class PortFolioService {
         responseInfo.setReturnMsg("Success");
         responseInfo.setData(moneyType + "::" + method + "::" + money + "::성공");
         return responseInfo;
+    }
+
+    public ResponseInfo findAllPortFolio(String userId) {
+        PortFolio portFolio = portFolioMongoRespository.findBy_id(userId);
+        if (null == portFolio) {
+            return new ResponseInfo(-1, "[존재하지 않는 사용자 입니다.]");
+        }
+        int portFolioWonSum =0;
+        int portFoliodollarSum =0;
+        List<PortFolioData> portFolioDetailList = new ArrayList<>();
+        HashMap<String, PortFolioDetail> map  = portFolio.getPortFolioDetailMap();
+        Iterator<String> iterator = map.keySet().iterator();
+
+        while(iterator.hasNext()){
+            String key = iterator.next(); // 키 얻기
+            PortFolioDetail portFolioDetail = portFolio.getPortFolioDetailMap().get(key);
+            portFolioWonSum += portFolioDetail.getPortFolioWonMoney();
+            portFoliodollarSum += portFolioDetail.getPortFolioDollarMoney();
+            for(int i=0; i<portFolioDetail.getPortFolioDataList().size();i++){
+                portFolioDetailList.add(portFolioDetail.getPortFolioDataList().get(i));
+            }
+        }
+
+        Map<String, Object> dataMap = new HashMap<>();
+        dataMap.put("portFolioWonMoney",portFolioWonSum);
+        dataMap.put("portFolioDollarMoney",portFoliodollarSum);
+        dataMap.put("portFolioDataList",portFolioDetailList);
+
+        return new ResponseInfo(1,"Success",dataMap);
     }
 }
