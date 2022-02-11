@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e23e9cd-ab7a-4297-a77f-ed7a1e1c12fd" name="Default Changelist" comment="db connection 없이 실행되도록 추가" />
+    <list default="true" id="3e23e9cd-ab7a-4297-a77f-ed7a1e1c12fd" name="Default Changelist" comment="빌드한거 다시" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -118,7 +118,7 @@
       <workItem from="1643937099998" duration="5055000" />
       <workItem from="1643963776281" duration="4847000" />
       <workItem from="1644422448090" duration="5226000" />
-      <workItem from="1644575712882" duration="1835000" />
+      <workItem from="1644575712882" duration="2513000" />
     </task>
     <task id="LOCAL-00001" summary="api 경로 수정, origin 수정">
       <created>1637548948209</created>
@@ -274,7 +274,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644577410356</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="빌드한거 다시">
+      <created>1644577580484</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1644577580484</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -315,7 +322,8 @@
     <MESSAGE value="mysql config 삭제" />
     <MESSAGE value="mysql connector 삭제" />
     <MESSAGE value="db connection 없이 실행되도록 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="db connection 없이 실행되도록 추가" />
+    <MESSAGE value="빌드한거 다시" />
+    <option name="LAST_COMMIT_MESSAGE" value="빌드한거 다시" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

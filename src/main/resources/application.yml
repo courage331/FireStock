@@ -16,7 +16,8 @@ spring:
   data:
     mongodb:
       authentication-database: admin
-      uri: mongodb://localhost:27017/firestock
+      #uri: mongodb://localhost:27017/firestock
+      uri: mongodb://15.164.254.209:27017/firestock
 ---
 spring:
   profiles: tomcatlocal
