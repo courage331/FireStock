@@ -10,7 +10,7 @@
         <module name="FireStock" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="8">
       <module name="FireStock" target="1.8" />
     </bytecodeTargetLevel>
   </component>
