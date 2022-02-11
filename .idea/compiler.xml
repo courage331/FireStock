@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="FireStock" target="11" />
+      <module name="FireStock" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
