@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -35,7 +37,7 @@ public class LoginService {
             User newUser = User.builder().
                     _id(user.get_id())
                     .password(passwordEncoder.encode(user.getPassword()))
-                    .roles("ADMIN")
+                    .roles("User")
                     .name(user.getName())
                     .nickname(user.getNickname())
                     .email(user.getEmail())
@@ -152,5 +154,19 @@ public class LoginService {
         userMongoRepository.save(changeUser);
         return new ResponseInfo(0, "[닉네임이 변경되었습니다.]",changeUser);
 
+    }
+
+    public ResponseInfo findAllUser() {
+        ResponseInfo responseInfo = new ResponseInfo();
+        List<User> userList = userMongoRepository.findAll();
+        List<String> userIdList = new ArrayList<>();
+        for(int i=0; i<userList.size(); i++){
+            userIdList.add(userList.get(i).get_id());
+            log.info(userList.get(i).get_id());
+        }
+        responseInfo.setReturnCode(1);
+        responseInfo.setReturnMsg("전체아이디 조회 성공");
+        responseInfo.setData(userIdList);
+        return responseInfo;
     }
 }

@@ -1,6 +1,7 @@
 package kr.co.firestock.vo;
 
 import lombok.*;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,8 +11,7 @@ import javax.persistence.Table;
 @Setter
 @NoArgsConstructor
 @ToString
-@Entity
-@Table(name = "stocks")
+@Document("stocks")
 public class Stocks {
     @Id
     String _id;

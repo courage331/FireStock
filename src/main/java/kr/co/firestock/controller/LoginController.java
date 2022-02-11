@@ -56,7 +56,7 @@ public class LoginController {
 
 
     /**
-     * 로그인시 User의 모 정보를 return
+     * 로그인시 User의 모든 정보를 return
      *
      * User가 token은 방금 발급받은 토큰이 된다.
      *
@@ -140,4 +140,6 @@ public class LoginController {
         log.info("[End changeNickname][{}]",request.getRequestURL());
         return responseInfo;
     }
+
+
 }
