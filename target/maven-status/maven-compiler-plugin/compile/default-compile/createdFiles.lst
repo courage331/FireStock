@@ -29,7 +29,6 @@ kr/co/firestock/service/LoginService.class
 kr/co/firestock/vo/ScheduledStock.class
 kr/co/firestock/service/HistoryService.class
 kr/co/firestock/util/StringUtil.class
-kr/co/firestock/config/MyDBConfig.class
 kr/co/firestock/vo/PortFolio$PortFolioBuilder.class
 kr/co/firestock/vo/CryptoCurrency$CryptoCurrencyBuilder.class
 kr/co/firestock/service/CustomUserDetailService.class

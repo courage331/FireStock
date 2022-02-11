@@ -26,7 +26,6 @@
 /Users/kimjimin/Develop/FireStock/src/main/java/kr/co/firestock/vo/PortFolioDetail.java
 /Users/kimjimin/Develop/FireStock/src/main/java/kr/co/firestock/security/JwtTokenProvider.java
 /Users/kimjimin/Develop/FireStock/src/main/java/kr/co/firestock/vo/TokenResponse.java
-/Users/kimjimin/Develop/FireStock/src/main/java/kr/co/firestock/config/MyDBConfig.java
 /Users/kimjimin/Develop/FireStock/src/main/java/kr/co/firestock/service/CryptoService.java
 /Users/kimjimin/Develop/FireStock/src/main/java/kr/co/firestock/vo/PortFolioData.java
 /Users/kimjimin/Develop/FireStock/src/main/java/kr/co/firestock/vo/LoginRequest.java
