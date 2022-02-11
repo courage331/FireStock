@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e23e9cd-ab7a-4297-a77f-ed7a1e1c12fd" name="Default Changelist" comment="추가...." />
+    <list default="true" id="3e23e9cd-ab7a-4297-a77f-ed7a1e1c12fd" name="Default Changelist" comment="mysql 삭제" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -118,7 +118,7 @@
       <workItem from="1643937099998" duration="5055000" />
       <workItem from="1643963776281" duration="4847000" />
       <workItem from="1644422448090" duration="5226000" />
-      <workItem from="1644575712882" duration="423000" />
+      <workItem from="1644575712882" duration="1046000" />
     </task>
     <task id="LOCAL-00001" summary="api 경로 수정, origin 수정">
       <created>1637548948209</created>
@@ -239,7 +239,21 @@
       <option name="project" value="LOCAL" />
       <updated>1644575993819</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="추가 ......">
+      <created>1644576169570</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1644576169570</updated>
+    </task>
+    <task id="LOCAL-00019" summary="mysql 삭제">
+      <created>1644576750922</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1644576750922</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -275,7 +289,9 @@
     <MESSAGE value="주식관리탭(db에 스케쥴을 돌릴 테이블을 하나 더 만들고 거기에 있는 주식명들로 api 조회해서 )&#10;다이렉트 로그인 -&gt; 사용자 전체 아이디 리스트 띄우게 하고 -&gt; 클릭하면 그 계정으로 로그인" />
     <MESSAGE value="추가.." />
     <MESSAGE value="추가...." />
-    <option name="LAST_COMMIT_MESSAGE" value="추가...." />
+    <MESSAGE value="추가 ......" />
+    <MESSAGE value="mysql 삭제" />
+    <option name="LAST_COMMIT_MESSAGE" value="mysql 삭제" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
