@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e23e9cd-ab7a-4297-a77f-ed7a1e1c12fd" name="Default Changelist" comment="mysql 삭제" />
+    <list default="true" id="3e23e9cd-ab7a-4297-a77f-ed7a1e1c12fd" name="Default Changelist" comment="mysql connector 삭제">
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -118,7 +120,7 @@
       <workItem from="1643937099998" duration="5055000" />
       <workItem from="1643963776281" duration="4847000" />
       <workItem from="1644422448090" duration="5226000" />
-      <workItem from="1644575712882" duration="1046000" />
+      <workItem from="1644575712882" duration="1508000" />
     </task>
     <task id="LOCAL-00001" summary="api 경로 수정, origin 수정">
       <created>1637548948209</created>
@@ -253,7 +255,21 @@
       <option name="project" value="LOCAL" />
       <updated>1644576750922</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="mysql config 삭제">
+      <created>1644576833405</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1644576833405</updated>
+    </task>
+    <task id="LOCAL-00021" summary="mysql connector 삭제">
+      <created>1644576947091</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1644576947091</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -291,7 +307,9 @@
     <MESSAGE value="추가...." />
     <MESSAGE value="추가 ......" />
     <MESSAGE value="mysql 삭제" />
-    <option name="LAST_COMMIT_MESSAGE" value="mysql 삭제" />
+    <MESSAGE value="mysql config 삭제" />
+    <MESSAGE value="mysql connector 삭제" />
+    <option name="LAST_COMMIT_MESSAGE" value="mysql connector 삭제" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
