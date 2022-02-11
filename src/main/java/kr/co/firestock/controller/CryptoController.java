@@ -29,7 +29,7 @@ public class CryptoController {
      * ex) localhost:8080/api/v1/crypto/input/upbitdata
      */
 
-    @Scheduled(fixedDelay = 5 * 60 * 1000, initialDelay = 10000)
+    @Scheduled(fixedDelay = 5 * 60 * 1000, initialDelay = 24 * 60 * 60 * 1000)
     @RequestMapping("/input/upbitdata")
     public ResponseInfo inputUpBitCoinData(){
         String Session = UUID.randomUUID().toString();
