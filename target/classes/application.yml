@@ -17,7 +17,7 @@ spring:
     mongodb:
       authentication-database: admin
       #uri: mongodb://localhost:27017/firestock
-      uri: mongodb://firestockadmin:firestock@15.164.254.209:27017/firestock?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false
+      uri: mongodb://firestockapi:firestockpwd@54.180.28.73:27017/firestock?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false
 ---
 spring:
   profiles: tomcatlocal
