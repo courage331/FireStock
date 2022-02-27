@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e23e9cd-ab7a-4297-a77f-ed7a1e1c12fd" name="Default Changelist" comment="0228">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="3e23e9cd-ab7a-4297-a77f-ed7a1e1c12fd" name="Default Changelist" comment="0228 log">
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,7 +121,7 @@
       <workItem from="1644575712882" duration="4171000" />
       <workItem from="1644582402905" duration="796000" />
       <workItem from="1644918976374" duration="4819000" />
-      <workItem from="1645745436146" duration="5594000" />
+      <workItem from="1645745436146" duration="5958000" />
     </task>
     <task id="LOCAL-00001" summary="api 경로 수정, origin 수정">
       <created>1637548948209</created>
@@ -341,7 +340,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645975030976</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="0228 log">
+      <created>1645975611103</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1645975611103</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -360,7 +366,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="로그 대대적으로 수정 2" />
     <MESSAGE value="Type 추가" />
     <MESSAGE value="데이터 타입 추가" />
     <MESSAGE value="데이터 구조 변경" />
@@ -385,7 +390,8 @@
     <MESSAGE value="20220225" />
     <MESSAGE value="20220225-morning" />
     <MESSAGE value="0228" />
-    <option name="LAST_COMMIT_MESSAGE" value="0228" />
+    <MESSAGE value="0228 log" />
+    <option name="LAST_COMMIT_MESSAGE" value="0228 log" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
