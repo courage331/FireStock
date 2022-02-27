@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e23e9cd-ab7a-4297-a77f-ed7a1e1c12fd" name="Default Changelist" comment="0228 log">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-    </list>
+    <list default="true" id="3e23e9cd-ab7a-4297-a77f-ed7a1e1c12fd" name="Default Changelist" comment="0228 log(3)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -121,7 +119,7 @@
       <workItem from="1644575712882" duration="4171000" />
       <workItem from="1644582402905" duration="796000" />
       <workItem from="1644918976374" duration="4819000" />
-      <workItem from="1645745436146" duration="5958000" />
+      <workItem from="1645745436146" duration="6498000" />
     </task>
     <task id="LOCAL-00001" summary="api 경로 수정, origin 수정">
       <created>1637548948209</created>
@@ -347,7 +345,21 @@
       <option name="project" value="LOCAL" />
       <updated>1645975611103</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="0228 log(2)">
+      <created>1645976047415</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1645976047415</updated>
+    </task>
+    <task id="LOCAL-00034" summary="0228 log(3)">
+      <created>1645976166066</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1645976166066</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -366,8 +378,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Type 추가" />
-    <MESSAGE value="데이터 타입 추가" />
     <MESSAGE value="데이터 구조 변경" />
     <MESSAGE value="거래내역 조회 추가" />
     <MESSAGE value="평단 맞춰서 가격 갱신 수량 갱신" />
@@ -391,7 +401,9 @@
     <MESSAGE value="20220225-morning" />
     <MESSAGE value="0228" />
     <MESSAGE value="0228 log" />
-    <option name="LAST_COMMIT_MESSAGE" value="0228 log" />
+    <MESSAGE value="0228 log(2)" />
+    <MESSAGE value="0228 log(3)" />
+    <option name="LAST_COMMIT_MESSAGE" value="0228 log(3)" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
