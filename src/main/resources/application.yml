@@ -29,7 +29,8 @@ server:
       enabled: true
       prefix: access_log_ladmin-api
       pattern: "[%A] [%v] [%{yyyy-MM-dd HH:mm:ss}t]  [%a] [%h] [%S] [accesslog] [%m] [%r] [%{User-Agent}i]"
-    basedir: /Users/kimjimin/logs
+    #basedir: /Users/kimjimin/logs
+    basedir: /tomcat/
 
 ---
 upbit :

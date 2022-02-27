@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e23e9cd-ab7a-4297-a77f-ed7a1e1c12fd" name="Default Changelist" comment="20220225-morning">
+    <list default="true" id="3e23e9cd-ab7a-4297-a77f-ed7a1e1c12fd" name="Default Changelist" comment="0228">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FireStock-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/FireStock-0.0.1-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/FireStock-0.0.1-SNAPSHOT.jar.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/FireStock-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +122,7 @@
       <workItem from="1644575712882" duration="4171000" />
       <workItem from="1644582402905" duration="796000" />
       <workItem from="1644918976374" duration="4819000" />
-      <workItem from="1645745436146" duration="4997000" />
+      <workItem from="1645745436146" duration="5594000" />
     </task>
     <task id="LOCAL-00001" summary="api 경로 수정, origin 수정">
       <created>1637548948209</created>
@@ -337,7 +334,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645752017655</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="0228">
+      <created>1645975030976</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1645975030976</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -356,7 +360,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="로그 대대적으로 수정" />
     <MESSAGE value="로그 대대적으로 수정 2" />
     <MESSAGE value="Type 추가" />
     <MESSAGE value="데이터 타입 추가" />
@@ -381,7 +384,8 @@
     <MESSAGE value="delay 수정 build" />
     <MESSAGE value="20220225" />
     <MESSAGE value="20220225-morning" />
-    <option name="LAST_COMMIT_MESSAGE" value="20220225-morning" />
+    <MESSAGE value="0228" />
+    <option name="LAST_COMMIT_MESSAGE" value="0228" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
