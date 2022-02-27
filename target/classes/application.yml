@@ -27,9 +27,10 @@ server:
   tomcat:
     accesslog:
       enabled: true
-      prefix: access_log_ladmin-api
+      prefix: access_log_firestockapi
       pattern: "[%A] [%v] [%{yyyy-MM-dd HH:mm:ss}t]  [%a] [%h] [%S] [accesslog] [%m] [%r] [%{User-Agent}i]"
     basedir: /Users/kimjimin/logs
+    #basedir: /logs/
 
 ---
 upbit :
