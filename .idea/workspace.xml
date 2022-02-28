@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e23e9cd-ab7a-4297-a77f-ed7a1e1c12fd" name="Default Changelist" comment="keystore.p12">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-    </list>
+    <list default="true" id="3e23e9cd-ab7a-4297-a77f-ed7a1e1c12fd" name="Default Changelist" comment="80 port" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -123,7 +119,7 @@
       <workItem from="1644575712882" duration="4171000" />
       <workItem from="1644582402905" duration="796000" />
       <workItem from="1644918976374" duration="4819000" />
-      <workItem from="1645745436146" duration="10806000" />
+      <workItem from="1645745436146" duration="11238000" />
     </task>
     <task id="LOCAL-00001" summary="api 경로 수정, origin 수정">
       <created>1637548948209</created>
@@ -391,7 +387,28 @@
       <option name="project" value="LOCAL" />
       <updated>1646041769456</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="add security">
+      <created>1646042218690</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1646042218690</updated>
+    </task>
+    <task id="LOCAL-00040" summary="basedir">
+      <created>1646042276164</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1646042276164</updated>
+    </task>
+    <task id="LOCAL-00041" summary="80 port">
+      <created>1646042362254</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1646042362255</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -410,9 +427,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="코인들 조회기능, KRW가 들어간 코인만 적재하는 로직으로 수정&#10;한 유저가 가지고 있는 포트폴리오 전체 합쳐서 보는 기능 추가" />
-    <MESSAGE value="소숫점 기능 추가" />
-    <MESSAGE value="주식관리탭(db에 스케쥴을 돌릴 테이블을 하나 더 만들고 거기에 있는 주식명들로 api 조회해서 )&#10;다이렉트 로그인 -&gt; 사용자 전체 아이디 리스트 띄우게 하고 -&gt; 클릭하면 그 계정으로 로그인" />
     <MESSAGE value="추가.." />
     <MESSAGE value="추가...." />
     <MESSAGE value="추가 ......" />
@@ -435,7 +449,10 @@
     <MESSAGE value="aaaaaaa" />
     <MESSAGE value="https" />
     <MESSAGE value="keystore.p12" />
-    <option name="LAST_COMMIT_MESSAGE" value="keystore.p12" />
+    <MESSAGE value="add security" />
+    <MESSAGE value="basedir" />
+    <MESSAGE value="80 port" />
+    <option name="LAST_COMMIT_MESSAGE" value="80 port" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
