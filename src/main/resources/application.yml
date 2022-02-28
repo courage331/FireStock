@@ -31,6 +31,13 @@ server:
       pattern: "[%A] [%v] [%{yyyy-MM-dd HH:mm:ss}t]  [%a] [%h] [%S] [accesslog] [%m] [%r] [%{User-Agent}i]"
     #basedir: /Users/kimjimin/logs
     basedir: /logs/
+  ssl:
+    enabled: true
+    key-store: keystore.p12
+    key-store-password: firestock
+    key-store-type: PKCS12
+    key-alias: bns-ssl
+
 
 ---
 upbit :
