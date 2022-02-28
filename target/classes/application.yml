@@ -38,6 +38,9 @@ server:
     key-store-type: PKCS12
     key-alias: bns-ssl
 
+security:
+  equire-ssl=true
+
 
 ---
 upbit :
