@@ -39,7 +39,7 @@ server:
     key-alias: bns-ssl
 
 security:
-  equire-ssl=true
+  require-ssl=true
 
 
 ---

@@ -44,7 +44,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.javacompiler" />
+    <property name="settings.editor.selected.configurable" value="tv.twelvetone.gradle.plugin.navigation.settings.SettingsConfig" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -60,17 +60,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.FireStockApplication">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="FireStockApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="FireStock" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="kr.co.firestock.FireStockApplication" />
@@ -120,6 +109,7 @@
       <workItem from="1644582402905" duration="796000" />
       <workItem from="1644918976374" duration="4819000" />
       <workItem from="1645745436146" duration="11575000" />
+      <workItem from="1646118350368" duration="49000" />
     </task>
     <task id="LOCAL-00001" summary="api 경로 수정, origin 수정">
       <created>1637548948209</created>
