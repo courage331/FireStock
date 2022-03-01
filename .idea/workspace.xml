@@ -4,11 +4,62 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e23e9cd-ab7a-4297-a77f-ed7a1e1c12fd" name="Default Changelist" comment="aaaaa" />
+    <list default="true" id="3e23e9cd-ab7a-4297-a77f-ed7a1e1c12fd" name="Default Changelist" comment="aaaaaqqq">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/kr/co/firestock/FireStockApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/kr/co/firestock/FireStockApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/FireStockApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/FireStockApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/config/MongoDBConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/config/MongoDBConfiguration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/controller/CryptoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/controller/CryptoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/controller/HistoryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/controller/HistoryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/controller/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/controller/ManageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/controller/ManageController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/controller/PortFolioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/controller/PortFolioController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/repository/HistoryMongoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/repository/HistoryMongoRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/repository/PortFolioMongoRespository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/repository/PortFolioMongoRespository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/repository/ScheduledStockRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/repository/ScheduledStockRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/repository/StocksMongoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/repository/StocksMongoRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/repository/UserMongoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/repository/UserMongoRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/security/JwtAuthenticationFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/security/JwtAuthenticationFilter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/security/JwtTokenProvider.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/security/JwtTokenProvider.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/security/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/security/WebSecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/service/CryptoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/service/CryptoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/service/CustomUserDetailService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/service/CustomUserDetailService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/service/HistoryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/service/HistoryService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/service/LoginService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/service/LoginService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/service/PortFolioService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/service/PortFolioService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/service/StockService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/service/StockService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/util/StringUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/util/StringUtil.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/CryptoCurrency$CryptoCurrencyBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/CryptoCurrency$CryptoCurrencyBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/CryptoCurrency.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/CryptoCurrency.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/CryptoCurrencyVO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/CryptoCurrencyVO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/History$HistoryBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/History$HistoryBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/History.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/History.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/LoginRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/LoginRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/PortFolio$PortFolioBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/PortFolio$PortFolioBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/PortFolio.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/PortFolio.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/PortFolioData$PortFolioDataBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/PortFolioData$PortFolioDataBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/PortFolioData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/PortFolioData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/PortFolioDetail.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/PortFolioDetail.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/ReqBodyFormat.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/ReqBodyFormat.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/ResponseInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/ResponseInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/ScheduledStock.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/ScheduledStock.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/Stocks.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/Stocks.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/TokenResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/TokenResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/User$UserBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/User$UserBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/kr/co/firestock/vo/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -20,6 +71,21 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="jdkForImporter" value="1.8" />
+      </MavenImportingSettings>
+    </option>
   </component>
   <component name="ProjectId" id="21AeNPxQHRldRxiL8hQUGmqJo2N" />
   <component name="ProjectViewState">
@@ -44,7 +110,10 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="tv.twelvetone.gradle.plugin.navigation.settings.SettingsConfig" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -60,6 +129,19 @@
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.FireStockApplication">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="FireStockApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="FireStock" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="kr.co.firestock.FireStockApplication" />
@@ -109,7 +191,7 @@
       <workItem from="1644582402905" duration="796000" />
       <workItem from="1644918976374" duration="4819000" />
       <workItem from="1645745436146" duration="11575000" />
-      <workItem from="1646118350368" duration="49000" />
+      <workItem from="1646118350368" duration="2544000" />
     </task>
     <task id="LOCAL-00001" summary="api 경로 수정, origin 수정">
       <created>1637548948209</created>
@@ -412,7 +494,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646042655039</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="aaaaaqqq">
+      <created>1646118477195</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1646118477195</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -431,7 +520,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="추가 ......" />
     <MESSAGE value="mysql 삭제" />
     <MESSAGE value="mysql config 삭제" />
     <MESSAGE value="mysql connector 삭제" />
@@ -456,7 +544,8 @@
     <MESSAGE value="80 port" />
     <MESSAGE value="aabvb" />
     <MESSAGE value="aaaaa" />
-    <option name="LAST_COMMIT_MESSAGE" value="aaaaa" />
+    <MESSAGE value="aaaaaqqq" />
+    <option name="LAST_COMMIT_MESSAGE" value="aaaaaqqq" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
